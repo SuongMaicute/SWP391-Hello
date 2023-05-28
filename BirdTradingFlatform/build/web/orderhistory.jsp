@@ -33,12 +33,12 @@
                 <div class="row order_sorter" style="margin-top: 30px;">
                     <ul id="toggle-orders">
                         <li class="first"></li>
-                        <li class="oh selected"><a href="/order?action=historyorders">Order History</a></li>
-                        <li class="fo"><a href="/order?action=historyorders&status=Pending">Pending/Future Orders</a>
+                        <li class="oh selected"><a href="order?action=historyorders">Order History</a></li>
+                        <li class="fo"><a href="order?action=historyorders&status=Pending">Pending/Future Orders</a>
                         </li>
-                        <li class="ed"><a href="/order?action=historyorders&status=Cancel">Cancel</a></>
+                        <li class="ed"><a href="order?action=historyorders&status=Cancel">Cancel</a></>
                         </li>
-                        <li class="com"><a href="/order?action=historyorders&status=Completed">Completed/Delivered</a></li>
+                        <li class="com"><a href="order?action=historyorders&status=Completed">Completed/Delivered</a></li>
 
                     </ul>
                 </div>

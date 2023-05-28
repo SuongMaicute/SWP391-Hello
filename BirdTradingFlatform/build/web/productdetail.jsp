@@ -5,25 +5,24 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">    
+
         <title>${requestScope.productdetail.getProductName()}</title>
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
     <body>
         <!--=== HEADER ===-->
-        <jsp:include page="/product">
-            <jsp:param name="action" value="suggestedproduct" />
+        
 
-            <jsp:param name="category" value="${requestScope.productdetail.getCategory()}" />
-        </jsp:include>
         <header class="header-container bg-light w-100 border-bottom-light">
             <nav class="navbar container-full d-flex align-items-center mx-auto">
                 <a class="navbar-logo d-flex align-items-center mr-auto" href="#">
@@ -71,7 +70,7 @@
         <!--=== END OF HEADER ===-->
 
         <!--=== MAIN CONTENT ===-->
-        <<form action="product">
+        <form action="product">
             <main class="w-100 mx-auto">
                 <!-- Main Section-->
                 <section id="main-section" class="main-section container-full mx-auto d-flex">
@@ -124,26 +123,24 @@
                                     </p>
                                 </div>
                                 <div class="product-options d-flex align-items-center">
-                                    <div class="option-btn d-flex align-items-center border-light">
-                                        <span class="minus">-</span>
-                                        <span class="num">${pageScope.quantity}</span>
 
-                                        <span class="plus">+</span>
+
+
+                                    <div class=" ">
+                                        <div class="count-input">
+                                            <div class="quantity buttons_added">
+                                                <input type="button" value="-" class="minus change">
+                                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty"
+                                                       class="input-text qty text" size="4" pattern="" inputmode="">
+                                                <input type="button" value="+" class="plus">
+                                            </div>
+
+                                        </div>
+
+
                                     </div>
-                                    <p href="#" class="option-btn d-flex align-items-center border-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                                        <path d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z" />
-                                        </svg>
-                                        Stock
-                                    </p>
-                                    <p href="#" class="option-btn d-flex align-items-center border-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                                        <path d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h2v4h2V8h2v4h2V8h2v4h2V8h2v4h2V8h2v8z" />
-                                        </svg>
-                                        Dimensions
-                                    </p>
+
+
                                 </div>
 
                                 <div class="product-price d-flex align-items-center">
@@ -262,8 +259,14 @@
                     </c:if>         
                 </c:if>
 
+                <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+                <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
+                <script src="js/js.js">
+
+                </script>
                 <!-- Client Suggestions Section-->
-               
-    </body>
-</html>
+
+                </body>
+                </html>
