@@ -3,7 +3,7 @@
     <Resource 
         name = "suongmaiDS" type ="javax.sql.DataSource" auth="Container"
         driverClassName= "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-        url ="jdbc:sqlserver://localhost:1433;databaseName=SWP"
+        url ="jdbc:sqlserver://localhost:1433;databaseName=BirdPlatform"
         username ="sa" password ="123456" 
         
     />

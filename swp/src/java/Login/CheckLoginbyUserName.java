@@ -39,7 +39,7 @@ public class CheckLoginbyUserName extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException {
-        String url = null;
+        String url = "Login.jsp";
         UserDTO dto = null;
         UserDAO dao = new UserDAO();
         PrintWriter out = response.getWriter();
@@ -51,12 +51,9 @@ public class CheckLoginbyUserName extends HttpServlet {
 
             if (cookie != null) {
                 //2. get last cookies
-                Cookie lastCookie = cookie[cookie.length-1];
+                Cookie lastCookie = cookie[cookie.length - 1];
                 String usernameC = lastCookie.getName();
                 String passwordC = lastCookie.getValue();
-                System.out.println(" coookie cos nef mas " + cookie.length);
-                System.out.println(" username :" + usernameC);
-                System.out.println(" pass :" + passwordC);
                 //3.Call model
                 UserDTO result = dao.CheckLoginbyUserName(usernameC, passwordC);
             }
@@ -71,18 +68,24 @@ public class CheckLoginbyUserName extends HttpServlet {
 
             if (dto != null) {
                 System.out.println(" result != null ");
-                url = "Homepage.html";
-                session.setAttribute("USERDTO", dto);
+                url = "HomePage.jsp";
+                session.setAttribute("USERDTOBYUSERNAME", dto);
+                // System.out.println("Check by Username IMg ne" + dto.getImg());
 
-                if (dto.getRole() == 1) {
-                    url = "Homepage.html";
-                    // giar swr 1 laf admin
-                }
-
+                /* if (dto.getRole().getRoleName().equalsIgnoreCase("admin")) {
+                    url = "HomePage.jsp";
+                    // HomePage controller for system admin nhe
+                }else  if (dto.getRole().getRoleName().equalsIgnoreCase("sdmin")) {
+                    url = "HomePage.jsp";
+                    // HomePage controller for Shop nhe
+                
+                } else{
+                // Cusstomer ne 
+                }*/
                 if (rememberMe != null) {
                     System.out.println(" Save ne ");
-                System.out.println(" username :" + username);
-                System.out.println(" pass :" + password);
+                    System.out.println(" username :" + username);
+                    System.out.println(" pass :" + password);
                     Cookie save = new Cookie(username, password);
                     // save.setMaxAge(60*10);
                     response.addCookie(save);

@@ -52,7 +52,7 @@ public class ResetPass extends HttpServlet {
             response.addCookie(PETHEELORS);
             
             
-            System.out.println(" EsetPass.java" + gmail + dto.getEmail());
+            
             
         }finally{
             response.sendRedirect("resetPass.jsp");
