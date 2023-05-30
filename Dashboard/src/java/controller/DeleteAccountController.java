@@ -7,6 +7,8 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +23,7 @@ import minhquan.user.UserDTO;
  * @author Minh Quan
  */
 public class DeleteAccountController extends HttpServlet {
-
+    private final String RESULT_PAGE = "account.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,18 +34,13 @@ public class DeleteAccountController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = "account.jsp";
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+      String email = request.getParameter("email");
+      String url = RESULT_PAGE;
         try {
-            String email = request.getParameter("email");
-            UserDTO dto = new UserDTO(email, null);
             UserDAO dao = new UserDAO();
-            dao.deleteUser(dto);                      
-        } catch (ClassNotFoundException ex) {
-            log("DeleteAccountServlet ClassNotFound " + ex.getMessage());
-        } catch (SQLException ex) {
-            log("DeleteAccountServlet SQLException " + ex.getMessage());
+            UserDTO account = new UserDTO(email, null);
+            dao.deleteUser(account);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
@@ -62,7 +59,13 @@ public class DeleteAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeleteAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -76,7 +79,13 @@ public class DeleteAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeleteAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

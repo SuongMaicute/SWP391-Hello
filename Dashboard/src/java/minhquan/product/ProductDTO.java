@@ -10,86 +10,107 @@ package minhquan.product;
  * @author Minh Quan
  */
 public class ProductDTO {
-    private String sku;
-    private String product_name;
-    private String image;
-    private float price;
+    private int productID;
+    private String productName;
+    private float priceIn;
+    private String type;
+    private String category;
     private int quantity;
     private String description;
-    private int category_id;
-    private int product_status_id;
-    private boolean is_deleted;
+    private String status;
+    private String img;
+    private String sku;
+    private int shopID;
+    private float priceOut;
+    private float pSale;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(String sku, String product_name, String image, float price, int quantity, String description, int category_id, int product_status_id, boolean is_deleted) {
-        this.sku = sku;
-        this.product_name = product_name;
-        this.image = image;
-        this.price = price;
+    public ProductDTO(int productID, String productName, float priceIn, String type, String category, int quantity, String description, String status, String img, String sku, int shopID, float priceOut, float pSale) {
+        this.productID = productID;
+        this.productName = productName;
+        this.priceIn = priceIn;
+        this.type = type;
+        this.category = category;
         this.quantity = quantity;
         this.description = description;
-        this.category_id = category_id;
-        this.product_status_id = product_status_id;
-        this.is_deleted = is_deleted;
-    }
-
-    
-    /**
-     * @return the sku
-     */
-    public String getSku() {
-        return sku;
-    }
-
-    /**
-     * @param sku the sku to set
-     */
-    public void setSku(String sku) {
+        this.status = status;
+        this.img = img;
         this.sku = sku;
+        this.shopID = shopID;
+        this.priceOut = priceOut;
+        this.pSale = pSale;
     }
 
     /**
-     * @return the product_name
+     * @return the productID
      */
-    public String getProduct_name() {
-        return product_name;
+    public int getProductID() {
+        return productID;
     }
 
     /**
-     * @param product_name the product_name to set
+     * @param productID the productID to set
      */
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     /**
-     * @return the image
+     * @return the productName
      */
-    public String getImage() {
-        return image;
+    public String getProductName() {
+        return productName;
     }
 
     /**
-     * @param image the image to set
+     * @param productName the productName to set
      */
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     /**
-     * @return the price
+     * @return the priceIn
      */
-    public float getPrice() {
-        return price;
+    public float getPriceIn() {
+        return priceIn;
     }
 
     /**
-     * @param price the price to set
+     * @param priceIn the priceIn to set
      */
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPriceIn(float priceIn) {
+        this.priceIn = priceIn;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the category
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**
@@ -121,45 +142,88 @@ public class ProductDTO {
     }
 
     /**
-     * @return the category_id
+     * @return the status
      */
-    public int getCategory_id() {
-        return category_id;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * @param category_id the category_id to set
+     * @param status the status to set
      */
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**
-     * @return the product_status_id
+     * @return the img
      */
-    public int getProduct_status_id() {
-        return product_status_id;
+    public String getImg() {
+        return img;
     }
 
     /**
-     * @param product_status_id the product_status_id to set
+     * @param img the img to set
      */
-    public void setProduct_status_id(int product_status_id) {
-        this.product_status_id = product_status_id;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     /**
-     * @return the is_deleted
+     * @return the sku
      */
-    public boolean isIs_deleted() {
-        return is_deleted;
+    public String getSku() {
+        return sku;
     }
 
     /**
-     * @param is_deleted the is_deleted to set
+     * @param sku the sku to set
      */
-    public void setIs_deleted(boolean is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
+
+    /**
+     * @return the shopID
+     */
+    public int getShopID() {
+        return shopID;
+    }
+
+    /**
+     * @param shopID the shopID to set
+     */
+    public void setShopID(int shopID) {
+        this.shopID = shopID;
+    }
+
+    /**
+     * @return the priceOut
+     */
+    public float getPriceOut() {
+        return priceOut;
+    }
+
+    /**
+     * @param priceOut the priceOut to set
+     */
+    public void setPriceOut(float priceOut) {
+        this.priceOut = priceOut;
+    }
+
+    /**
+     * @return the pSale
+     */
+    public float getpSale() {
+        return pSale;
+    }
+
+    /**
+     * @param pSale the pSale to set
+     */
+    public void setpSale(float pSale) {
+        this.pSale = pSale;
+    }
+    
     
 }

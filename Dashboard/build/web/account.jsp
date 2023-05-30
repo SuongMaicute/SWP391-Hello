@@ -87,16 +87,14 @@
                                                 <th class="text-center" scope="col">Email</th>
                                                 <th class="text-center" scope="col">Full Name</th>
                                                 <th class="text-center" scope="col">Password</th>
-
-                                                <th class="text-center" scope="col">Address</th>
-                                                <th class="text-center" scope="col">Phone number</th>
-
+                                                <th class="text-center" scope="col">Registed day</th>
                                                 <th class="text-center" scope="col">Role</th>
                                                 <th class="text-center" scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <c:set var="userList" value="${requestScope.USER}"/>
+                                            <c:set var="roleList" value="${requestScope.ROLES}" />
                                             <c:if test="${not empty userList}">
                                                 <c:forEach var="user" items="${userList}">
                                                 <form action="AccountController" method="POST">
@@ -104,35 +102,28 @@
                                                         <td class="text-center" >${user.email}
                                                             <input type="hidden" name="email" value="${user.email}"/>
                                                         </td>
-                                                        <td class="text-center" >${user.fullname}</td>
+                                                        <td class="text-center" >${user.username}</td>
                                                         <td class="text-center" >
                                                             <input class="input-edit-user" type="text" name="password" value="${user.password}" />
                                                         </td>
-
-
-                                                        <td class="text-center" >                            
-                                                            <input class="input-edit-use r" type="text" name="address" value="${user.address}" />
+                                                        <td class="text-center " >                            
+                                                            <input class="input-edit-use" type="text" name="address" value="${user.regisDate}" />
                                                         </td>
-                                                        <td class="text-center" >                                       
-                                                            <input class="input-edit-user" type="text" name="phonenum" value="${user.phone_number}" />
-                                                        </td>
-                                                        <td class="text-center" >
-                                                            <select class="input-edit" name="roleId">
-                                                                <c:forEach var="rItem" items="${roles}">
-                                                                    <option value="${rItem.id}"
-                                                                            <c:if test="${dto.role.id == rItem.id}">
-                                                                                selected="selected"
-                                                                            </c:if>
-                                                                            >${rItem.role}</option>
+                                                        <td class="text-center">
+                                                            <c:if test="${not empty roleList}">
+                                                                <c:forEach var="role" items="${roleList}">
+                                                                    <c:if test="${role.role == user.role}">
+                                                                         <input class="input-edit-use" type="text" name="address" value="${role.roleName}" />
+                                                                    </c:if>
                                                                 </c:forEach>
-                                                            </select>
-
+                                                            </c:if>
                                                         </td>
 
                                                         <td class="text-end">
                                                             <button type="submit" class="btn btn-sm btn-neutral">
-                                                                <i class="fa fa-edit shop-btn_modify"></i
-                                                                ></button>
+                                                                <span class="material-symbols-outlined">
+                                                                    cached
+                                                                </span></button>
                                                                 <c:url var="deleteaccount" value="DeleteAccountController">
                                                                     <c:param name="email" value="${user.email}"></c:param>
                                                                 </c:url>
@@ -141,7 +132,9 @@
                                                                 class="btn btn-sm btn-square btn-neutral text-danger-hover"
 
                                                                 >
-                                                                <i class="fa fa-trash-alt shop-btn_modify"></i>
+                                                                <span class="material-symbols-outlined">
+                                                                    delete
+                                                                </span>
                                                             </a>
                                                         </td>
                                                     </tr>

@@ -28,6 +28,10 @@
         <servlet-name>UpdateAccountServlet</servlet-name>
         <servlet-class>controller.UpdateAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <servlet-class>controller.UpdateAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DashboardController</servlet-name>
         <url-pattern>/DashboardController</url-pattern>
@@ -56,6 +60,10 @@
         <servlet-name>UpdateAccountServlet</servlet-name>
         <url-pattern>/UpdateAccountServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <url-pattern>/UpdateAccountController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -63,7 +71,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            product.jsp
+            AccountController
         </welcome-file>
     </welcome-file-list>
 </web-app>

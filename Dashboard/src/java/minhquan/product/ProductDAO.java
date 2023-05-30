@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
 import minhquan.orders.OrdersDAO;
-import minhquan.ordersItem.OrderItemDAO;
-import minhquan.ordersItem.OrderItemDTO;
+import minhquan.ordersItem.OrderDetailDAO;
+import minhquan.ordersItem.OrderDetailDTO;
 import minhquan.user.UserDTO;
 import minhquan.util.DBHelper;
 
@@ -29,7 +29,7 @@ public class ProductDAO {
         return productList;
     }
 
-    public ArrayList<ProductDTO> getUserList() throws ClassNotFoundException, SQLException {
+    public ArrayList<ProductDTO> printProductList() throws ClassNotFoundException, SQLException {
         ArrayList<ProductDTO> productDashList = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -38,23 +38,26 @@ public class ProductDAO {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT * FROM Products";
+                String sql = "SELECT * FROM Product";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
 
                 while (rs.next()) {
-                    String sku = rs.getString("sku");
-                    String product_name = rs.getString("product_name");
-                    String image = rs.getString("image");
-                    float price = rs.getFloat("price");
+                    int productID = rs.getInt("productID");
+                    String productName = rs.getString("productName");
+                    float priceIn = rs.getFloat("priceIn");
+                    String type = rs.getString("type");
+                    String category = rs.getString("category");
                     int quantity = rs.getInt("quantity");
                     String description = rs.getString("description");
-                    int category_id = rs.getInt("category_id");
-                    int product_status_id = rs.getInt("product_status_id");
-                    boolean is_deleted = rs.getBoolean("is_deleted");
-
-                    ProductDTO result = new ProductDTO(sku, product_name, image, price, quantity, description, category_id, product_status_id, is_deleted);
-
+                    String status = rs.getString("status");
+                    String img = rs.getString("img");
+                    String sku = rs.getString("sku");
+                    int shopID = rs.getInt("shopID");
+                    float priceOut = rs.getFloat("priceOut");
+                    float pSale = rs.getFloat("pSale");
+                    ProductDTO result = new 
+        ProductDTO(productID, productName, priceIn, type, category, quantity, description, status, img, sku, shopID, priceOut, pSale);
                     productDashList.add(result);
                 }
             }
@@ -72,7 +75,7 @@ public class ProductDAO {
         return productDashList;
     }
 
-    public void searchProduct(String productSku) throws ClassNotFoundException, SQLException {
+    public void searchProduct(int id) throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -81,23 +84,28 @@ public class ProductDAO {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT * From Products WHERE sku like ?";
+                String sql = "SELECT * From Product WHERE productID like ?";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, "%" + productSku + "%");
+                stm.setInt(1, id);
                 rs = stm.executeQuery();
                 while (rs.next()) {
 
-                    String sku = rs.getString("sku");
-                    String product_name = rs.getString("product_name");
-                    String image = rs.getString("image");
-                    float price = rs.getFloat("price");
+                    int productID = rs.getInt("productID");
+                    String productName = rs.getString("productName");
+                    float priceIn = rs.getFloat("priceIn");
+                    String type = rs.getString("type");
+                    String category = rs.getString("category");
                     int quantity = rs.getInt("quantity");
                     String description = rs.getString("description");
-                    int category_id = rs.getInt("category_id");
-                    int product_status_id = rs.getInt("product_status_id");
-                    boolean is_deleted = rs.getBoolean("is_deleted");
+                    String status = rs.getString("status");
+                    String img = rs.getString("img");
+                    String sku = rs.getString("sku");
+                    int shopID = rs.getInt("shopID");
+                    float priceOut = rs.getFloat("priceOut");
+                    float pSale = rs.getFloat("pSale");
 
-                    result = new ProductDTO(sku, product_name, image, price, quantity, description, category_id, product_status_id, is_deleted);
+                    result = new ProductDTO
+        (productID, productName, priceIn, type, category, quantity, description, status, img, sku, shopID, priceOut, pSale);
                     if (this.productList == null) {
                         productList = new ArrayList<>();
                     }
@@ -116,23 +124,17 @@ public class ProductDAO {
             }
         }
     }
+    
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        OrderItemDAO dao = new OrderItemDAO();
-        dao.getTop5Product();
-        List<OrderItemDTO> list = dao.getOrderItemList();
-        String sku_num1 = list.get(0).getSku();
-        String sku_num2 = list.get(1).getSku();
-        String sku_num3 = list.get(2).getSku();
-        String sku_num4 = list.get(3).getSku();
-        String sku_num5 = list.get(4).getSku();
+     
         ProductDAO productDAO = new ProductDAO();
-        productDAO.searchProduct(sku_num5);
-        productDAO.searchProduct(sku_num1);
-        productDAO.searchProduct(sku_num2);
-        productDAO.searchProduct(sku_num4);
-        productDAO.searchProduct(sku_num3);
-        List<ProductDTO> listProduct = productDAO.getProductList();
-        System.out.println("Product :" + listProduct.size());
+        List<ProductDTO> listProduct = productDAO.printProductList();
+        OrderDetailDAO dao = new OrderDetailDAO();
+        dao.getTop5Product();
+        List<OrderDetailDTO> orderList = dao.getOrderItemList(); 
+        productDAO.searchProduct(orderList.get(0).getProductID());
+         List<ProductDTO> list = productDAO.getProductList();
+         System.out.println(list);
     }
 }
