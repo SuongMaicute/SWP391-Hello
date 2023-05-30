@@ -6,6 +6,7 @@ package minhquan.user;
 
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,17 +38,17 @@ public class UserDAO {
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
                 
-                while (rs.next()) {                    
+                while (rs.next()) {    
+                    int accountID = rs.getInt("accountID");
+                    String username = rs.getString("username");
                     String email = rs.getString("email");
                     String password = rs.getString("password");
-                    String image = rs.getString("image");
-                    String fullname = rs.getString("fullname");
-                    String address = rs.getString("address");
-                    String phone_number = rs.getString("phone_number");
-                    boolean is_deleted = rs.getBoolean("is_deleted");
-                    int role_id = rs.getInt("role_id");
+                    int role = rs.getInt("role");
+                    boolean isDeleted = rs.getBoolean("isDeleted");
+                    Date regisDate = rs.getDate("regisDate");
+                    String avatar = rs.getString("avatar");
                     
-                  UserDTO result = new UserDTO(email, password, image, fullname, address, phone_number, is_deleted, role_id);
+                  UserDTO result = new UserDTO(accountID, username, email, password, role, isDeleted, regisDate, avatar);
                     userList.add(result);
                 }
             }
@@ -72,9 +73,10 @@ public class UserDAO {
             con = DBHelper.makeConnection();
             if (con != null) {
                 String sql = "UPDATE Account "
-                        + "SET is_deleted = 1"
+                        + "SET isDeleted = 1"
                         + "WHERE email = ?;";
                 stm = con.prepareStatement(sql);
+                stm.setString(1, user.getEmail());
                row = stm.executeUpdate();
                 if (row > 0) {
                     return true;
@@ -92,7 +94,8 @@ public class UserDAO {
     }
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         UserDAO dao = new UserDAO();
-        List<UserDTO> list = dao.getUserList();
-        System.out.println(list);
+        UserDTO user = new UserDTO("kitsvshack321@gmail.com", null);
+        dao.deleteUser(user);
+        
     }
 }

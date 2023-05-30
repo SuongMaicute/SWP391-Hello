@@ -16,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import minhquan.role.RoleDAO;
+import minhquan.role.RoleDTO;
 import minhquan.user.UserDAO;
 import minhquan.user.UserDTO;
 
@@ -41,7 +43,12 @@ public class AccountController extends HttpServlet {
         try {
             UserDAO dao = new UserDAO();
             List<UserDTO> user = dao.getUserList();
+            RoleDAO roleDAO = new RoleDAO();
+            roleDAO.getAllRoles(user);
+            List<RoleDTO> roles = roleDAO.getRoles();
             request.setAttribute("USER", user);
+            request.setAttribute("ROLES", roles);
+            System.out.println(roles);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

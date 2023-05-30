@@ -97,19 +97,18 @@
                                                 <tr>
                                                     <td class="text-center">${product.sku}
                                                         <input class="input-edit" type="hidden" name="sku" value="${dto.sku}"  />
-
                                                     </td>
-                                                    <td class="text-center">${product.product_name}</td>
+                                                    <td class="text-center">${product.productName}</td>
                                                     <td class="text-center">
                                                         <img
                                                             alt="..."
-                                                            src="${product.image}"                      
+                                                            src="${product.img}"                      
                                                             class="rounded-circle img-table"
                                                             />
                                                     </td>
                                                     <td class="text-center">
 
-                                                        <input class="input-edit" type="number" name="price" value="${product.price}"  />
+                                                        <input class="input-edit" type="number" name="price" value="${product.priceIn}"  />
                                                     </td>
 
                                                     <td class="text-center">
@@ -117,24 +116,7 @@
                                                         <input class="input-edit" type="number" name="quantity" value="${product.quantity}"  />
 
                                                     </td>
-                                                    <td class="text-center">
-
-                                                        <select name="sId">
-                                                            <c:forEach var="item" items="${statuses}">
-                                                                <option 
-                                                                    <c:if test="${item.id == dto.status.id}">
-                                                                    selected = "selected"
-                                                                    </c:if>
-                                                                    value="${item.id}"
-                                                                    >
-                                                                    ${item.status}
-                                                                </option>
-
-                                                            </c:forEach>
-                                                        </select>
-
-                                                    </td>
-
+                                                        <td class="text-center">${product.status}</td>
                                                     <td class="text-center">
                                                         <input type="hidden" name="btAction" value="Update Product"/>
                                                         <button
@@ -143,13 +125,6 @@
                                                             >
                                                             <i class="fa fa-edit shop-btn_modify"></i
                                                             ></button>
-                                                        <a
-                                                            type="button"
-                                                            class="btn btn-sm btn-square btn-neutral"
-                                                            href="deleteProductAction?sku=${product.sku}"
-                                                            >
-                                                            <i class="fa fa-trash-alt shop-btn_modify"></i>
-                                                        </a>
                                                     </td>
                                                 </tr>
                                             </form>

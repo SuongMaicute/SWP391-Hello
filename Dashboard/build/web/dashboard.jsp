@@ -51,7 +51,7 @@
                                 </span>
                                 <div class="middle">
                                     <div class="left">
-                                        <h3>Totals Orders</h3>
+                                        <h3>Totals Users</h3>
                                         <c:forEach var="data" items="${dataList}">
                                             <c:if test="${count eq 0}">
                                                 <h1>${data}</h1>
@@ -195,7 +195,7 @@
                             // Retrieve the data from the server-side using JSP and format it as required
                             // Example: { category: "Laptop", quantity: 10 }, { category: "Phone", quantity: 5 }, ...
             <c:forEach var="product" items="${requestScope.TOPPRODUCT}">
-                            "${product.product_name}",
+                            "${product.productName}",
             </c:forEach>
                         ];
                         var barChartOptions = {

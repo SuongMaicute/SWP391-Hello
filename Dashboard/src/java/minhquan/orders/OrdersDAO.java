@@ -5,13 +5,14 @@
 package minhquan.orders;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import minhquan.ordersItem.OrderItemDAO;
-import minhquan.ordersItem.OrderItemDTO;
+import minhquan.ordersItem.OrderDetailDAO;
+import minhquan.ordersItem.OrderDetailDTO;
 import minhquan.util.DBHelper;
 
 /**
@@ -19,36 +20,39 @@ import minhquan.util.DBHelper;
  * @author Minh Quan
  */
 public class OrdersDAO {
-    
-    private List<OrdersDTO> ordersList;
-    
-    public List<OrdersDTO> getOrderList(){
+
+    private List<Order> ordersList;
+
+    public List<Order> getOrderList() {
         return ordersList;
     }
-    
-    public void getOrders() throws SQLException, ClassNotFoundException{
+
+    public void getOrders() throws SQLException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        OrdersDTO result = null;
-        
+        Order result = null;
+
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
                 con = DBHelper.makeConnection();
                 if (con != null) {
-                    String sql = "SELECT * FROM Orders";
+                    String sql = "SELECT * FROM [BirdPlatform].[dbo].[Order]";
                     stm = con.prepareStatement(sql);
                     rs = stm.executeQuery();
-                    
-                    while (rs.next()) {                        
-                        int order_id = rs.getInt("order_id");
-                        String email = rs.getString("email");
-                        String order_date = rs.getString("order_date");
+
+                    while (rs.next()) {
+                        int orderID = rs.getInt("orderID");
+                        Date orderDate = rs.getDate("orderDate");
                         float total = rs.getFloat("total");
-                        int order_status_id = rs.getInt("order_status_id");
-                        
-                        result = new OrdersDTO(order_id, email, order_date, total, order_status_id);
+                        int paymentID = rs.getInt("paymentID");
+                        int customerID = rs.getInt("customerID");
+                        int addressShipID = rs.getInt("addressShipID");
+                        Date shipDate = rs.getDate("shipDate");
+                        String status = rs.getString("status");
+
+                        result = new Order(orderID, orderDate, total, paymentID, customerID, addressShipID, shipDate, status);
                         if (this.ordersList == null) {
                             ordersList = new ArrayList<>();
                         }
@@ -57,7 +61,7 @@ public class OrdersDAO {
                 }
             }
         } finally {
-             if (rs != null) {
+            if (rs != null) {
                 rs.close();
             }
             if (stm != null) {
@@ -66,15 +70,66 @@ public class OrdersDAO {
             if (con != null) {
                 con.close();
             }
-            
+
         }
-        
-     
-}
+
+    }
+ public List<OrderHistory> getOrderHistory(int accountID, String status) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<OrderHistory> list = new ArrayList<>();
+        try {
+            con = DBUtils.getConnection();
+            if(con!=null){
+//                String sql = "select * from [Order] where "
+//                        + "customerID = (select customerID "
+//                        + "from [customer] left join [account] "
+//                        + "on [customer].accountID=?)";
+                  String sql = "select * from "
+                          + "orderHistory(?) as oHis "
+                          + "left join orderHistoryQuantity() as oQuan "
+                          + "on oHis.orderID=oQuan.orderID "
+                          + "left join orderHistoryFirstProduct() as stProNa "
+                          + "on oHis.orderID=stProNa.orderID";
+                  if(status!=null&& ! status.isEmpty()){
+                      sql += "where status = '" + status +"'";
+                  }
+                pstm = con.prepareStatement(sql);
+                pstm.setInt(1, accountID);
+                rs = pstm.executeQuery();
+                while(rs.next()){
+                    list.add(new OrderHistory( rs.getInt("totalQuantity"), 
+                            rs.getString("firstProductName"), 
+                            rs.getInt("orderID"),
+                            rs.getString("orderDate"), 
+                            rs.getDouble("total"),
+                            rs.getInt("addressShipID"),
+                            rs.getString("shipDate"),
+                            rs.getString("status")));
+                            
+                            
+                         
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstm != null) {
+                pstm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         OrdersDAO dao = new OrdersDAO();
         dao.getOrders();
-        List<OrdersDTO> ordersDTOs = dao.getOrderList();
-        System.out.println(ordersDTOs);
+        List<Order> ordersDTOs = dao.getOrderList();
+        System.out.println(ordersDTOs.size());
     }
 }

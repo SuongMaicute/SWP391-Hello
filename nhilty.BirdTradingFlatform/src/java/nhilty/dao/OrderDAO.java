@@ -38,7 +38,7 @@ public class OrderDAO {
                           + "on oHis.orderID=oQuan.orderID "
                           + "left join orderHistoryFirstProduct() as stProNa "
                           + "on oHis.orderID=stProNa.orderID";
-                  if(status!=null&&!status.isBlank()){
+                  if(status!=null&& ! status.isEmpty()){
                       sql += "where status = '" + status +"'";
                   }
                 pstm = con.prepareStatement(sql);

@@ -40,7 +40,7 @@ public class ProductController extends HttpServlet {
         String url = "product.jsp";
         try {
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> user = dao.getUserList();
+            List<ProductDTO> user = dao.printProductList();
             request.setAttribute("PRODUCT", user);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

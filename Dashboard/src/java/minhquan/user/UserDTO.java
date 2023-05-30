@@ -4,41 +4,69 @@
  */
 package minhquan.user;
 
+import java.sql.Date;
+
 /**
  *
  * @author Minh Quan
  */
 public class UserDTO {
+
+    private int accountID;
+    private String username;
     private String email;
     private String password;
-    private String image;
-    private String fullname;
-    private String address;
-    private String phone_number;
-    private boolean is_deleted;
-    private int role_id;
-    
-    public UserDTO(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    private int role;
+    private boolean isDeleted;
+    private Date regisDate;
+    private String avatar;
+
     public UserDTO() {
     }
-
-    public UserDTO(String email, String password, String image, String fullname, String address, String phone_number, boolean is_deleted, int role_id) {
-        this.email = email;
-        this.password = password;
-        this.image = image;
-        this.fullname = fullname;
-        this.address = address;
-        this.phone_number = phone_number;
-        this.is_deleted = is_deleted;
-        this.role_id = role_id;
+     public UserDTO(String email, String password) {
+      this.email = email;
+      this.password = password;   
     }
 
-    
+    public UserDTO(int accountID, String username, String email, String password, int role, boolean isDeleted, Date regisDate, String avatar) {
+        this.accountID = accountID;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.isDeleted = isDeleted;
+        this.regisDate = regisDate;
+        this.avatar = avatar;
+    }
 
-    
+    /**
+     * @return the accountID
+     */
+    public int getAccountID() {
+        return accountID;
+    }
+
+    /**
+     * @param accountID the accountID to set
+     */
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     /**
      * @return the email
      */
@@ -68,88 +96,61 @@ public class UserDTO {
     }
 
     /**
-     * @return the image
+     * @return the role
      */
-    public String getImage() {
-        return image;
+    public int getRole() {
+        return role;
     }
 
     /**
-     * @param image the image to set
+     * @param role the role to set
      */
-    public void setImage(String image) {
-        this.image = image;
+    public void setRole(int role) {
+        this.role = role;
     }
 
     /**
-     * @return the fullname
+     * @return the isDeleted
      */
-    public String getFullname() {
-        return fullname;
+    public boolean isIsDeleted() {
+        return isDeleted;
     }
 
     /**
-     * @param fullname the fullname to set
+     * @param isDeleted the isDeleted to set
      */
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     /**
-     * @return the address
+     * @return the regisDate
      */
-    public String getAddress() {
-        return address;
+    public Date getRegisDate() {
+        return regisDate;
     }
 
     /**
-     * @param address the address to set
+     * @param regisDate the regisDate to set
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setRegisDate(Date regisDate) {
+        this.regisDate = regisDate;
     }
 
     /**
-     * @return the is_deleted
+     * @return the avatar
      */
-    public boolean isIs_deleted() {
-        return is_deleted;
+    public String getAvatar() {
+        return avatar;
     }
 
     /**
-     * @param is_deleted the is_deleted to set
+     * @param avatar the avatar to set
      */
-    public void setIs_deleted(boolean is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    /**
-     * @return the role_id
-     */
-    public int getRole_id() {
-        return role_id;
-    }
+ 
 
-    /**
-     * @param role_id the role_id to set
-     */
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
-    }
-
-    /**
-     * @return the phone_number
-     */
-    public String getPhone_number() {
-        return phone_number;
-    }
-
-    /**
-     * @param phone_number the phone_number to set
-     */
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
-    }
-    
-    
 }

@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import minhquan.orders.OrdersDAO;
-import minhquan.orders.OrdersDTO;
-import minhquan.ordersItem.OrderItemDAO;
-import minhquan.ordersItem.OrderItemDTO;
+import minhquan.orders.Order;
+import minhquan.ordersItem.OrderDetailDAO;
+import minhquan.ordersItem.OrderDetailDTO;
 import minhquan.product.ProductDAO;
 import minhquan.product.ProductDTO;
 import minhquan.user.UserDAO;
@@ -61,20 +61,20 @@ public class DashboardController extends HttpServlet {
 //                get the number of Orders
                 OrdersDAO ordersDAO = new OrdersDAO();
                 ordersDAO.getOrders();
-                List<OrdersDTO> orderList = ordersDAO.getOrderList();
+                List<Order> orderList = ordersDAO.getOrderList();
                 int numberOfOrders = orderList.size();
 //              get the number of income
-                OrderItemDAO orderItemDAO = new OrderItemDAO();
+                OrderDetailDAO orderItemDAO = new OrderDetailDAO();
                 float numberOfIncome = orderItemDAO.getIncome();
                 int data[] = {numberOfUser, numberOfOrders};
 //                Get the data for chart
                 orderItemDAO.getTop5Product();
-                List<OrderItemDTO> list = orderItemDAO.getOrderItemList();
-                String sku_num1 = list.get(0).getSku();
-                String sku_num2 = list.get(1).getSku();
-                String sku_num3 = list.get(2).getSku();
-                String sku_num4 = list.get(3).getSku();
-                String sku_num5 = list.get(4).getSku();
+                List<OrderDetailDTO> list = orderItemDAO.getOrderItemList();
+                int sku_num1 = list.get(0).getProductID();
+                int sku_num2 = list.get(1).getProductID();
+                int sku_num3 = list.get(2).getProductID();
+                int sku_num4 = list.get(3).getProductID();
+                int sku_num5 = list.get(4).getProductID();
 
                 ProductDAO productDAO = new ProductDAO();
                 productDAO.searchProduct(sku_num5);
@@ -88,7 +88,7 @@ public class DashboardController extends HttpServlet {
                 request.setAttribute("TOPPRODUCT", listProduct);
                 request.setAttribute("DATA", data);
                 request.setAttribute("INCOME", numberOfIncome);
-                System.out.println(list);
+                System.out.println(listProduct);
             }
 
         } finally {
