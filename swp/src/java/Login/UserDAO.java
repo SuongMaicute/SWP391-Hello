@@ -47,15 +47,12 @@ public class UserDAO {
                     String email = rs.getString("email");
                     String password = rs.getString("password");
                     int role = rs.getInt("role");
-                    String roleName = rs.getString("roleName");
-                    
-                    RoleDTO roleObj = new RoleDTO(role, roleName);
                     
                     boolean isDeleted = rs.getBoolean("isDeleted");
                     Date regisDate = rs.getDate("regisDate");
                     String avatar = rs.getString("avatar");
                     
-                   dto = new UserDTO(accountID, username, email, password, roleObj, isDeleted, regisDate, avatar);
+                   dto = new UserDTO(accountID, username, email, password, role, isDeleted, regisDate, avatar);
                     System.out.print(dto.getEmail());
                 }
             } else {
@@ -102,15 +99,12 @@ public class UserDAO {
                     int accountID = rs.getInt("accountID");
                     String email = rs.getString("email");
                     int role = rs.getInt("role");
-                    String roleName = rs.getString("roleName");
-                    
-                    RoleDTO roleObj = new RoleDTO(role, roleName);
                     
                     boolean isDeleted = rs.getBoolean("isDeleted");
                     Date regisDate = rs.getDate("regisDate");
                     String avatar = rs.getString("avatar");
                     
-                   dto = new UserDTO(accountID, username, email, password, roleObj, isDeleted, regisDate, avatar);
+                   dto = new UserDTO(accountID, username, email, password, role, isDeleted, regisDate, avatar);
                     System.out.print(dto.getEmail());
                 }
             } else {
@@ -149,7 +143,7 @@ public class UserDAO {
                 stm.setString(1, dto.getUsername());
                 stm.setString(2, dto.getEmail());
                 stm.setString(3, dto.getPassword());
-                stm.setInt(4,dto.getRole().getRole());
+                stm.setInt(4,dto.getRole());
                 stm.setBoolean(5, dto.getIsDeleted());
                 stm.setDate(6, dto.getRegisDate());
                 stm.setString(7, dto.getAvatar());

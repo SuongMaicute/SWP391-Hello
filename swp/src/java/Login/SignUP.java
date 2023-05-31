@@ -89,8 +89,7 @@ public class SignUP extends HttpServlet {
            }
            
            if (err==false){
-               RoleDTO role = new RoleDTO(1, "user");
-               UserDTO save = new UserDTO (1, userName, email, pass, role, false,(java.sql.Date) new java.util.Date(),
+               UserDTO save = new UserDTO (1, userName, email, pass, 1, false,(java.sql.Date) new java.util.Date(),
                        "https://i.pinimg.com/564x/2f/e6/a5/2fe6a575ad7b7baabf6dd536b1496a50.jpg");
                dao.SaveUser(save);
                url = "Homepage.jsp";

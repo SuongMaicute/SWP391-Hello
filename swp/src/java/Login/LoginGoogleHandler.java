@@ -7,19 +7,13 @@ package Login;
 
 import Entity.CustomerDAO;
 import Entity.CustomerDTO;
-import Entity.RoleDTO;
-import Login.Constants;
-import Login.UserDAO;
-import Login.UserDTO;
-import Login.UserGoogleDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
+import java.text.Normalizer.Form;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -66,8 +60,7 @@ public class LoginGoogleHandler extends HttpServlet {
             session.setAttribute("GMAIL", user.getEmail());
             session.setAttribute("GOOGLE_ACC", user);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-            RoleDTO role = new RoleDTO(1, "user");
-            dto = new UserDTO(1, "USER", user.getEmail(), "123", role,
+            dto = new UserDTO(1, "USER", user.getEmail(), "123", 1,
                     false,null,user.getPicture());
             dao.SaveUser(dto);
             System.out.println(user);
