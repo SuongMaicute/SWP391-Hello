@@ -15,7 +15,7 @@
         <meta charset="utf-8">    
 
         <title>${requestScope.productdetail.getProductName()}</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/productdetail.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>

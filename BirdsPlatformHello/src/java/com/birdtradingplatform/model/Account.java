@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.birdtradingplatform.model;
-
+import com.birdtradingplatform.model.Role;
 /**
  *
  * @author leyen
@@ -46,8 +46,6 @@ public class Account {
         this.regisDate = regisDate;
     }
 
-
-
     public int getAccountID() {
         return accountID;
     }
@@ -82,7 +80,7 @@ public class Account {
 
  
 
-    public boolean isIsDeleted() {
+    public boolean getIsDeleted() {
         return isDeleted;
     }
 

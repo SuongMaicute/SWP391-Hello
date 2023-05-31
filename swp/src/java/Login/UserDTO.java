@@ -17,12 +17,12 @@ public class UserDTO {
     private String username;
     private String email;
     private String password;
-    private RoleDTO role ;
+    private int role ;
     private Boolean isDeleted;
     private Date regisDate;
     private String avatar;
 
-    public UserDTO(int accountID, String username, String email, String password, RoleDTO role, Boolean isDeleted, Date regisDate, String avatar) {
+    public UserDTO(int accountID, String username, String email, String password, int role, Boolean isDeleted, Date regisDate, String avatar) {
         this.accountID = accountID;
         this.username = username;
         this.email = email;
@@ -52,7 +52,7 @@ public class UserDTO {
         return password;
     }
 
-    public RoleDTO getRole() {
+    public int getRole() {
         return role;
     }
 
@@ -84,7 +84,7 @@ public class UserDTO {
         this.password = password;
     }
 
-    public void setRole(RoleDTO role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
