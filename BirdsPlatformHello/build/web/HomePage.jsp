@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <!-- custom css file link  -->
-        <link rel="stylesheet" href="./asset/css/total.css">
+        <link rel="stylesheet" href="css/total.css">
 
     </head>
 
@@ -89,7 +89,7 @@
 
             <div class="box">
                 <i class="ri-close-line close-icon"></i>
-                <img src="./asset/img/cart-img-1.jpg" alt="">
+                <img src="img/cart-img-1.jpg" alt="">
                 <div class="content">
                     <h3>modern furniture</h3>
                     <span class="quantity"> 1 </span>
@@ -100,7 +100,7 @@
 
             <div class="box">
                 <i class="ri-close-line close-icon"></i>
-                <img src="./asset/img/cart-img-1.jpg" alt="">
+                <img src="img/cart-img-1.jpg" alt="">
                 <div class="content">
                     <h3>modern furniture</h3>
                     <span class="quantity"> 1 </span>
@@ -111,7 +111,7 @@
 
             <div class="box">
                 <i class="ri-close-line close-icon"></i>
-                <img src="./asset/img/cart-img-1.jpg" alt="">
+                <img src="img/cart-img-1.jpg" alt="">
                 <div class="content">
                     <h3>modern furniture</h3>
                     <span class="quantity"> 1 </span>
@@ -122,7 +122,7 @@
 
             <div class="box">
                 <i class="ri-close-line close-icon"></i>
-                <img src="./asset/img/cart-img-1.jpg" alt="">
+                <img src="img/cart-img-1.jpg" alt="">
                 <div class="content">
                     <h3>modern furniture</h3>
                     <span class="quantity"> 1 </span>
@@ -156,7 +156,7 @@
                         <a href="#" class="btn">shop now</a>
                     </div>
                     <div class="image">
-                        <img id="FixNow" src="./asset/img/home-img-1.png" alt="">
+                        <img id="FixNow" src="img/home-img-1.png" alt="">
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@
                         <a href="#" class="btn">shop now</a>
                     </div>
                     <div class="image">
-                        <img src="./asset/img/home-img-2.png" alt="">
+                        <img src="img/home-img-2.png" alt="">
                     </div>
                 </div>
 
@@ -186,7 +186,7 @@
         <section class="banner-container">
 
             <div class="banner">
-                <img src="./asset/img/banner-1.jpg" alt="">
+                <img src="img/banner-1.jpg" alt="">
                 <div class="content">
                     <span>limited offer</span>
                     <h3>upto 50% off</h3>
@@ -195,7 +195,7 @@
             </div>
 
             <div class="banner">
-                <img src="./asset/img/banner-2.jpg" alt="">
+                <img src="img/banner-2.jpg" alt="">
                 <div class="content">
                     <span>limited offer</span>
                     <h3>upto 50% off</h3>
@@ -204,7 +204,7 @@
             </div>
 
             <div class="banner">
-                <img src="./asset/img/banner-3.jpg" alt="">
+                <img src="img/banner-3.jpg" alt="">
                 <div class="content">
                     <span>limited offer</span>
                     <h3>upto 50% off</h3>
@@ -273,7 +273,7 @@
 
 
         <!-- custom js file link  -->
-        <script src="./asset/js/total.js"></script>
+        <script src="js/total.js"></script>
 
     </body>
 

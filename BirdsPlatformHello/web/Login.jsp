@@ -24,7 +24,7 @@
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossorigin="anonymous"
             />
-        <link rel="stylesheet" href="./asset/css/style.css" />
+        <link rel="stylesheet" href="css/style_1.css" />
     </head>
     <body>
         <div class="container">
@@ -32,7 +32,7 @@
             <div class="box-form">
                 <div class="left">
                     <div class="overlay">
-                        <img src="./asset/img/pic1.png" width="500px" height="400px"/>
+                        <img src="img/pic1.png" width="500px" height="400px"/>
                         <h2>Pet  Hello</h2>
                         <p>Order by 2pm local time <br> to get free delivery <br> by orders
 

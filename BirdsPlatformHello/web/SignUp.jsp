@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="./asset/css/login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 
@@ -94,7 +94,7 @@
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="./asset/img/signup-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="img/signup-image.jpg" alt="sing up image"></figure>
                         <a href="#" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
