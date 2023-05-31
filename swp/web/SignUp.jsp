@@ -30,7 +30,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form action="SignUP" method="POST" class="register-form" id="register-form">
+                        <form action="signUpController" method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name"/>
@@ -89,7 +89,7 @@
                                 <c:if test="${not empty TermERR}">
                                     <h3>You need to agree with our policy</h3>
                                 </c:if>
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <input type="submit" name="MAIN" id="signup" class="form-submit" value="Register"/>
                             </div>
                         </form>
                     </div>

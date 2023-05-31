@@ -5,88 +5,102 @@
  */
 package Login;
 
+import Entity.RoleDTO;
+import java.sql.Date;
+
 /**
  *
  * @author Admin
  */
 public class UserDTO {
-    private String accountID;
-    private String email;
+    private int accountID;
     private String username;
-    private int role;
+    private String email;
     private String password;
-    private Boolean is_Delete;
-    private Boolean customer;
+    private RoleDTO role ;
+    private Boolean isDeleted;
+    private Date regisDate;
+    private String avatar;
 
-    public UserDTO(String accountID, String email, String username, int role, String password, Boolean is_Delete, Boolean customer) {
+    public UserDTO(int accountID, String username, String email, String password, RoleDTO role, Boolean isDeleted, Date regisDate, String avatar) {
         this.accountID = accountID;
-        this.email = email;
         this.username = username;
-        this.role = role;
+        this.email = email;
         this.password = password;
-        this.is_Delete = is_Delete;
-        this.customer = customer;
+        this.role = role;
+        this.isDeleted = isDeleted;
+        this.regisDate = regisDate;
+        this.avatar = avatar;
     }
 
     public UserDTO() {
     }
 
-    public String getAccountID() {
+    public int getAccountID() {
         return accountID;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public int getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setAccountID(String accountID) {
-        this.accountID = accountID;
+    public RoleDTO getRole() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public Date getRegisDate() {
+        return regisDate;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setIs_Delete(Boolean is_Delete) {
-        this.is_Delete = is_Delete;
+    public void setRole(RoleDTO role) {
+        this.role = role;
     }
 
-    public void setCustomer(Boolean customer) {
-        this.customer = customer;
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public Boolean getIs_Delete() {
-        return is_Delete;
+    public void setRegisDate(Date regisDate) {
+        this.regisDate = regisDate;
     }
 
-    public Boolean getCustomer() {
-        return customer;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
+
     
-    
+        
     
 }

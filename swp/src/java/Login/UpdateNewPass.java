@@ -63,7 +63,7 @@ public class UpdateNewPass extends HttpServlet {
             
             if (err==false){
                UserDAO dao = new UserDAO();
-               dao.UpdatePass(gmail, pass);
+               dao.Update(gmail, pass,"password");
                url="Login.jsp"; 
            }
             

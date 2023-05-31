@@ -5,8 +5,10 @@
  */
 package Login;
 
+import Entity.RoleDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,9 +89,11 @@ public class SignUP extends HttpServlet {
            }
            
            if (err==false){
-               UserDTO save = new UserDTO ("2", email, userName, 0, pass, false, false);
+               RoleDTO role = new RoleDTO(1, "user");
+               UserDTO save = new UserDTO (1, userName, email, pass, role, false,(java.sql.Date) new java.util.Date(),
+                       "https://i.pinimg.com/564x/2f/e6/a5/2fe6a575ad7b7baabf6dd536b1496a50.jpg");
                dao.SaveUser(save);
-               url = "Homepage.html";
+               url = "Homepage.jsp";
            }
            
            

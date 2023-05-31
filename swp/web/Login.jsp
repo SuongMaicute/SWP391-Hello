@@ -44,7 +44,7 @@
                     <h3 style="padding-left: 35px;">Welcome</h3>
                     <h3>to PetHello</h3>
 
-                    <form action="CheckLoginbyUserName" method="POST">
+                    <form action="DispatcherServlet">
                         <div class="inputs">
                             <input type="text" placeholder="Username" name="username" />
                             <br />
@@ -65,9 +65,9 @@
                             </label>
                             <p>Forgot Password?</p>
                         </div>
-
+                        <input name="MAIN" class="loginBT" type="submit" value="Login" />
                         <div class="loginBt">
-                            <input class="loginBT" type="submit" value="Login" />
+                            
                         </div>
                     </form>
 

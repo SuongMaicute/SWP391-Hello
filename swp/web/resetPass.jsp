@@ -27,14 +27,14 @@ s
 
         <c:if test="${not empty PETHEELORS}">
             <h1>Hello World!</h1>
-            <form action="UpdateNewPass">
+            <form action="DispatcherServlet">
                 <input type="hidden" name="gmail" value="${PETHEELORS}" /> 
                 <input type="text" name="newPass"  />
                 <h2 style="color: red">The new pass is empty </h2>
                 <input type="text" name="confirmPass"  />
                  <h2 style="color: red">The Confirm pass is empty </h2>
                   <h2 style="color: red">The new pass is empty </h2>
-                <input type="submit" name ="submit ne" />
+                <input name="MAIN" type="submit" value ="ResetPass" />
             </form>
         </c:if>
 
