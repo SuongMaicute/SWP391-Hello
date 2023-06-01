@@ -31,6 +31,7 @@
             />
         <link rel="stylesheet" href="css/base.css"/>
         <link rel="stylesheet" href="css/account.css"/>
+        <link rel="stylesheet" href="css/responsive.css"/>
     </head>
     <body>
         <div class="grid-container">
@@ -107,23 +108,25 @@
                                                             <input class="input-edit-user" type="text" name="password" value="${user.password}" />
                                                         </td>
                                                         <td class="text-center " >                            
-                                                            <input class="input-edit-use" type="text" name="address" value="${user.regisDate}" />
+                                                            <input class="input-edit-user" type="text" name="address" value="${user.regisDate}" />
                                                         </td>
                                                         <td class="text-center">
                                                             <c:if test="${not empty roleList}">
                                                                 <c:forEach var="role" items="${roleList}">
                                                                     <c:if test="${role.role == user.role}">
-                                                                         <input class="input-edit-use" type="text" name="address" value="${role.roleName}" />
+                                                                         <input class="input-edit-user" type="text" name="address" value="${role.roleName}" />
                                                                     </c:if>
                                                                 </c:forEach>
                                                             </c:if>
                                                         </td>
 
-                                                        <td class="text-end">
-                                                            <button type="submit" class="btn btn-sm btn-neutral">
+                                                        <td class="text-end">                                                         
+                                                            <a href="UpdateAccountServlet" class="btn btn-sm btn-square btn-neutral text-danger-hover"> 
                                                                 <span class="material-symbols-outlined">
                                                                     cached
-                                                                </span></button>
+                                                                </span>
+                                                                     </a>  
+                                                           
                                                                 <c:url var="deleteaccount" value="DeleteAccountController">
                                                                     <c:param name="email" value="${user.email}"></c:param>
                                                                 </c:url>

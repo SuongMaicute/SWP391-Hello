@@ -16,10 +16,10 @@ body {
 
 .right {
     min-height: 100vh; /* sử dụng 100% chiều cao của viewport */
-
-    background-color: rgb(38 48 67);
-    border-left: 1px solid #1d2634;
-    border-radius: 8px;
+    border-radius: 5px;
+    background-color: rgb(255 255 255);;
+    border-left: 1px solid #263043;;
+    border-top: 1px solid #263043;;
 }
 .header__admin {
     width: 100%;
@@ -47,7 +47,7 @@ body {
     height: 30px;
 }
 .material-symbols-outlined{
-    color: white;
+    color: rgb(94 71 62);
 }
 .bar-icon,
 .closebar-icon {
@@ -169,7 +169,6 @@ body {
     background-color: #fff;
     padding: 10px 0 20px 10px;
     margin-top: 30px;
-    background-color: #263043;
 }
 
 .detail-title h5 {
@@ -183,7 +182,7 @@ body {
 tr,
 th {
     font-size: 1.6rem;
-    color: white;
+    color: rgb(94 71 62);
 }
 .action-btn {
     width: 80px;
@@ -467,7 +466,7 @@ th {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-left: 80px;
+    margin-left: 40px;
     padding: 5px 8px;
 }
 
