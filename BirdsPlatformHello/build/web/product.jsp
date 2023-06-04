@@ -32,6 +32,7 @@
             />
         <link rel="stylesheet" href="css/base.css"/>
         <link rel="stylesheet" href="css/product.css"/>
+        <link rel="stylesheet" href="css/responsive.css"/>
     </head>
     <body>
         <div class="grid-container"> 

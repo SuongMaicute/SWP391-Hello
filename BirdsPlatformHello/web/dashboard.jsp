@@ -38,7 +38,6 @@
                 <main class="main-container">
                     <div class="main-title">
                         <h2>DASHBOARD</h2>
-                      ${DATA}
                     </div>
                     <div class="insights">
                     <c:set var="count" value="${0}"/>                                           
@@ -216,7 +215,7 @@
                     categories: categoryData,
                     labels: {
                         style: {
-                            colors: 'white'
+                            colors: "black"
                         }
                     }
                 },
@@ -224,7 +223,7 @@
                     title: {
                         text: "Count",
                         style: {
-                            color: "white"
+                            color: "black"
                         }
                     }
                 }
@@ -265,7 +264,7 @@
                         title: {
                             text: 'Purchase Orders',
                             style: {
-                                color: "white"
+                                color: "black"
                             }
                         },
                     },
@@ -274,7 +273,7 @@
                         title: {
                             text: 'Sales Orders',
                             style: {
-                                color: "white"
+                                color: "black"
                             }
                         },
                     },

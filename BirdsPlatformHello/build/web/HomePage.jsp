@@ -35,7 +35,7 @@
             <a href="./Homepage.html" class="logo"> <i class="ri-store-2-line"></i> Pet.Hello </a>
 
             <form action="#" class="search-form">
-                <input type="search" placeholder="search here..." id="search-box">
+                <input type="search" placeholder="Search here..." id="search-box">
                 <label for="search-box" class="ri-search-line"></label>
             </form>
 
@@ -54,7 +54,7 @@
                     </a>
                 </c:if>
                 <c:if test="${not empty User}">
-                    <a href="userProfile.jsp">
+                    <a href="userProfile_1.jsp">
                         <div id="login-btn" class="ri-user-line"></div>
                     </a>
                 </c:if>

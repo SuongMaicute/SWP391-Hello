@@ -24,11 +24,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     .card-header {
         padding: 1rem 1.35rem;
         margin-bottom: 0;
-        background-color: #263043;
+        background-color: white;
         border-bottom: 1px solid rgba(33, 40, 50, 0.125);
     }
     .card-body{
-        background: #263043;
+        background: white;
     }
     .form-control, .dataTable-input {
         display: block;
@@ -38,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         font-weight: 400;
         line-height: 1;
         color: #69707a;
-        background-color: #263043;
+        background-color: white;
         background-clip: padding-box;
         border: 1px solid #626871;
         -webkit-appearance: none;
