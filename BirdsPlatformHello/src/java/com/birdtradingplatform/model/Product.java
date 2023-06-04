@@ -10,6 +10,7 @@ package com.birdtradingplatform.model;
  * @author leyen
  */
 public class Product {
+
     private int productID;
     private String productName;
     private double priceIn;
@@ -23,13 +24,14 @@ public class Product {
     private Shop shop;
     private double priceOut;
     private double pSale;
+    private String dateIn;
 
     public Product() {
     }
 
     public Product(int productID, String productName, double priceIn, String type,
-            String category, int quantity, String description, String status, 
-            String img, String sku, Shop shop, double priceOut, double pSale) {
+            String category, int quantity, String description, String status,
+            String img, String sku, Shop shop, double priceOut, double pSale, String dateIn) {
         this.productID = productID;
         this.productName = productName;
         this.priceIn = priceIn;
@@ -43,6 +45,7 @@ public class Product {
         this.shop = shop;
         this.priceOut = priceOut;
         this.pSale = pSale;
+        this.dateIn = dateIn;
     }
 
     public int getProductID() {
@@ -149,12 +152,17 @@ public class Product {
         this.pSale = pSale;
     }
 
+    public String getDateIn() {
+        return dateIn;
+    }
+
+    public void setDateIn(String dateIn) {
+        this.dateIn = dateIn;
+    }
+
     @Override
     public String toString() {
         return "Product{" + "productID=" + productID + ", productName=" + productName + ", priceIn=" + priceIn + ", type=" + type + ", category=" + category + ", quantity=" + quantity + ", description=" + description + ", status=" + status + ", img=" + img + ", sku=" + sku + ", shop=" + shop + ", priceOut=" + priceOut + ", pSale=" + pSale + '}';
     }
 
-   
-    
-    
 }

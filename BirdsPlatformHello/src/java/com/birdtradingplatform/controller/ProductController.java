@@ -4,10 +4,14 @@
  */
 package com.birdtradingplatform.controller;
 
+import com.birdtradingplatform.dao.FeedbackDAO;
 import com.birdtradingplatform.dao.ProductDAO;
+import com.birdtradingplatform.model.Feedback;
+import com.birdtradingplatform.model.FeedbackDetail;
 import com.birdtradingplatform.model.Product;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,21 +41,20 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        
+
         if ("detail".equals(action)) {
             String productID = request.getParameter("pid");
 
             ProductDAO dao = new ProductDAO();
             Product product = dao.getProduct(productID);
 
-           
             if (product != null) {
                 request.setAttribute("productdetail", product);
                 request.setAttribute("action", "suggestedproduct");
                 request.getRequestDispatcher("productdetail.jsp").forward(request, response);
             }
-        }else if("suggestedproduct".equals(action)){
-            
+        } else if ("suggestedproduct".equals(action)) {
+
             String category = request.getParameter("category");
             ProductDAO dao = new ProductDAO();
             int suggestionProduct = 15;
@@ -63,7 +66,7 @@ public class ProductController extends HttpServlet {
             } catch (Exception e) {
                 curPage = 1;
             }
-            List<Product> suggestedProductList = dao.getSuggestion(category, 
+            List<Product> suggestedProductList = dao.getSuggestion(category,
                     productPerPage, curPage);
             //List of suggested product
             request.setAttribute("suggestedlist", suggestedProductList);
@@ -73,6 +76,82 @@ public class ProductController extends HttpServlet {
             request.setAttribute("currentpage", curPage);
             request.getRequestDispatcher("productdetail.jsp")
                     .forward(request, response);
+        } else if ("feedback".equals(action)) {
+            int productID;
+            try {
+                productID = Integer.parseInt(request.getParameter("productID"));
+            } catch (NumberFormatException e) {
+                productID = -1;
+            }
+            FeedbackDAO feedbackDAO = new FeedbackDAO();
+            List<FeedbackDetail> list = feedbackDAO.getFeedbackDetail(productID);
+            int totalfeedback = list.size();
+            int fivestar = 0;
+            int fourstar = 0;
+            int threestar = 0;
+            int twostar = 0;
+            int onestar = 0;
+            for (FeedbackDetail feedback : list) {
+                switch (feedback.getStar()) {
+                    case 5:
+                        fivestar += 1;
+                        break;
+                    case 4:
+                        fourstar += 1;
+                        break;
+                    case 3:
+                        threestar += 1;
+                        break;
+                    case 2:
+                        twostar += 1;
+                        break;
+                    case 1:
+                        onestar += 1;
+                        break;
+                }
+            }
+            request.setAttribute("feedbacklist", list);
+            request.setAttribute("totalfeedback", totalfeedback);
+            request.setAttribute("fivestar", fivestar);
+            request.setAttribute("fourstar", fourstar);
+            request.setAttribute("threestar", threestar);
+            request.setAttribute("twostar", twostar);
+            request.setAttribute("onestar", onestar);
+            request.getRequestDispatcher("feedback.jsp")
+                    .forward(request, response);
+
+        } else if ("pagingshopproductlist".equals(action)) {
+            ProductDAO dao = new ProductDAO();
+            String search = request.getParameter("search");
+            String colSort = request.getParameter("colSort");
+            String category = request.getParameter("category");
+            if (colSort == null) {
+                colSort = "star";
+            }
+            if (colSort == null) {
+                colSort = "";
+            }
+           
+            int totalProduct = dao.getProductCount(search);
+            int productPerPage = 16;
+            int numPage = (int)Math.ceil((double)totalProduct/(double)productPerPage);
+            int curPage;
+            try {
+                curPage = Integer.parseInt(request.getParameter("curPage"));
+            } catch (Exception e) {
+                curPage = 1;
+            }
+            List<Product> shopProductList = dao.getShopProductListByPage(search, 
+                    productPerPage, curPage, colSort, category);
+            //List of suggested product
+            request.setAttribute("suggestedlist", suggestedProductList);
+            //total page
+            request.setAttribute("totalpage", numPage);
+            //current page
+            request.setAttribute("currentpage", curPage);
+            request.getRequestDispatcher("productdetail.jsp")
+                    .forward(request, response);
+            
         }
     }
 

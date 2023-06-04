@@ -11,10 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.birdtradingplatform.dao.OrderDetailDAO;
 import com.birdtradingplatform.model.OrderDetail;
 import com.birdtradingplatform.model.Shop;
-import minhquan.util.DBHelper;
+import com.birdtradingplatform.utils.DBHelper;
 
 /**
  *
@@ -55,7 +54,7 @@ public class ProductDAO {
                     int shopID = rs.getInt("shopID");
                     float priceOut = rs.getFloat("priceOut");
                     float pSale = rs.getFloat("pSale");
-                    Product result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale);
+                    Product result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale, "");
                     productDashList.add(result);
                 }
             }
@@ -87,30 +86,30 @@ public class ProductDAO {
                 for (OrderDetail orderDetail : orderDetailsList) {
                     stm.setInt(1, orderDetail.getProductID());
                     rs = stm.executeQuery();
-           
-                while (rs.next()) {
 
-                    int productID = rs.getInt("productID");
-                    String productName = rs.getString("productName");
-                    float priceIn = rs.getFloat("priceIn");
-                    String type = rs.getString("type");
-                    String category = rs.getString("category");
-                    int quantity = rs.getInt("quantity");
-                    String description = rs.getString("description");
-                    String status = rs.getString("status");
-                    String img = rs.getString("img");
-                    String sku = rs.getString("sku");
-                    int shopID = rs.getInt("shopID");
-                    float priceOut = rs.getFloat("priceOut");
-                    float pSale = rs.getFloat("pSale");
+                    while (rs.next()) {
 
-                    result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale);
-                    if (this.productList == null) {
-                        productList = new ArrayList<>();
+                        int productID = rs.getInt("productID");
+                        String productName = rs.getString("productName");
+                        float priceIn = rs.getFloat("priceIn");
+                        String type = rs.getString("type");
+                        String category = rs.getString("category");
+                        int quantity = rs.getInt("quantity");
+                        String description = rs.getString("description");
+                        String status = rs.getString("status");
+                        String img = rs.getString("img");
+                        String sku = rs.getString("sku");
+                        int shopID = rs.getInt("shopID");
+                        float priceOut = rs.getFloat("priceOut");
+                        float pSale = rs.getFloat("pSale");
+
+                        result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale, "");
+                        if (this.productList == null) {
+                            productList = new ArrayList<>();
+                        }
+                        this.productList.add(result);
                     }
-                    this.productList.add(result);
                 }
-                    }
             }
         } catch (Exception e) {
             if (rs != null) {
@@ -161,7 +160,7 @@ public class ProductDAO {
                                     rs.getInt("accountID"),
                                     rs.getInt("addressID")),
                             rs.getDouble("priceOut"),
-                            rs.getDouble("pSale"));
+                            rs.getDouble("pSale"), "");
                 }
 
             }
@@ -219,7 +218,7 @@ public class ProductDAO {
                                     rs.getInt("accountID"),
                                     rs.getInt("addressID")),
                             rs.getDouble("priceOut"),
-                            rs.getDouble("pSale")));
+                            rs.getDouble("pSale"), ""));
                 }
             }
         } catch (Exception e) {
@@ -248,4 +247,45 @@ public class ProductDAO {
         List<Product> list = productDAO.getProductList();
         System.out.println(list.get(1).getProductName());
     }
+
+    public int getProductCount(String search) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBHelper.makeConnection();
+            if (conn != null) {
+                String sql = "select count(*) as total "
+                        + " from [Product] where (productName like ? or description like ? ) or category = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, "%" + search + "%");
+                pstm.setString(2, "%" + search + "%");
+                pstm.setString(3, search);
+                rs = pstm.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstm != null) {
+                pstm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return 0;
+    }
+
+//    public List<Product> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) {
+//        
+//    }
+
 }
