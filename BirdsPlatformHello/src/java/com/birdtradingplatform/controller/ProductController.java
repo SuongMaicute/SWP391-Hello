@@ -9,6 +9,7 @@ import com.birdtradingplatform.dao.ProductDAO;
 import com.birdtradingplatform.model.Feedback;
 import com.birdtradingplatform.model.FeedbackDetail;
 import com.birdtradingplatform.model.Product;
+import com.birdtradingplatform.model.ProductWithRate;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -141,7 +142,7 @@ public class ProductController extends HttpServlet {
             } catch (Exception e) {
                 curPage = 1;
             }
-            List<Product> shopProductList = dao.getShopProductListByPage(search, 
+            List<ProductWithRate> shopProductList = dao.getShopProductListByPage(search, 
                     productPerPage, curPage, colSort, category);
             //List of suggested product
             request.setAttribute("suggestedlist", suggestedProductList);

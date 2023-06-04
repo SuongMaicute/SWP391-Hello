@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.birdtradingplatform.model.OrderDetail;
+import com.birdtradingplatform.model.ProductWithRate;
 import com.birdtradingplatform.model.Shop;
 import com.birdtradingplatform.utils.DBHelper;
 
@@ -284,8 +285,48 @@ public class ProductDAO {
         return 0;
     }
 
-//    public List<Product> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) {
-//        
-//    }
+    public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) {
+          List<ProductWithRate> productList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBHelper.makeConnection();
+            if (conn != null) {
+                String sql = "select * "
+                        + " from [Product] "
+                        + " where (name like ? or Describe like ? or category = ?)"
+                        + " order by "+colSort +" "+ sortType+" offset "+(page-1)*limit+" rows "
+                        + " fetch next ? rows only; ";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, "%" + search + "%");
+                pstm.setString(2, "%" + search + "%");
+                pstm.setString(3, search);
+                pstm.setInt(4, limit);
+                
+                rs = pstm.executeQuery();
+                while (rs.next()) {
+                    productList.add(new Product(rs.getInt("id"), rs.getString("name"),
+                            rs.getString("category"), rs.getInt("Quantity"),
+                            rs.getString("ImgPath"), rs.getDouble("Price"),
+                            rs.getString("Adddate"), rs.getString("Describe")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstm != null) {
+                pstm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return productList;
+    }
 
 }
