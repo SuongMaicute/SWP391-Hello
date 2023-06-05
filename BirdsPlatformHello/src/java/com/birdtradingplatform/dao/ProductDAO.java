@@ -285,7 +285,7 @@ public class ProductDAO {
         return 0;
     }
 
-    public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) {
+    public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) throws SQLException {
           List<ProductWithRate> productList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstm = null;

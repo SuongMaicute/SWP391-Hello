@@ -145,7 +145,7 @@ public class ProductController extends HttpServlet {
             List<ProductWithRate> shopProductList = dao.getShopProductListByPage(search, 
                     productPerPage, curPage, colSort, category);
             //List of suggested product
-            request.setAttribute("suggestedlist", suggestedProductList);
+            request.setAttribute("suggestedlist", shopProductList);
             //total page
             request.setAttribute("totalpage", numPage);
             //current page

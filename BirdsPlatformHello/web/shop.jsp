@@ -197,7 +197,6 @@
                 <div class="box">
                     <div class="icons">
                         <a href="#" class="ri-shopping-cart-line"></a>
-                        <a href="#" class="ri-heart-line"></a>
                         <a href="#" class="ri-eye-line"></a>
                     </div>
                     <div class="image">
