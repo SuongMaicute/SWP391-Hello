@@ -39,11 +39,10 @@ public class SignUP extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "SignUp.jsp";
+        String url = "Login.jsp";
         Boolean err = false;
         try  {
            String userName = request.getParameter("name");
-           String term = request.getParameter("agree-term");
            String email = request.getParameter("email");
            String pass = request.getParameter("pass");
            String confirm = request.getParameter("re_pass");
@@ -78,21 +77,19 @@ public class SignUP extends HttpServlet {
            
            
            
-           if(term == null){
-               err= true;
-               request.setAttribute("TermERR", true);
-           }
-           
            if(checkEmail != null){
                err= true;
                request.setAttribute("DuplicatedERR", true);
            }
            
+           
            if (err==false){
                Account save = new Account (1, userName, email, pass, 1, false,"",
                        "https://i.pinimg.com/564x/2f/e6/a5/2fe6a575ad7b7baabf6dd536b1496a50.jpg");
                dao.SaveUser(save);
-               url = "Homepage.jsp";
+               url = "HomePage.jsp";
+           }else{
+                request.setAttribute("ERROR", true);
            }
            
            

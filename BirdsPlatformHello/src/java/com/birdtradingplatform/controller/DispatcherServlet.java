@@ -28,6 +28,10 @@ public class DispatcherServlet extends HttpServlet {
     private String UPDATECONTROLLER = "UpdateProfile";
     private String GETDATATOUSERPROFILECONTROLLE= "GetDataForUserProfile";
     private String UPDATEPASSCONTROLLER= "UpdateNewPass";
+    private String SALELISTCONTROLLER= "saleListController";
+    private String CREATCODECONTROLLER= "CreateCodeController";
+    private String CHANGEPASSCONTROLLER = "ChangePassController";
+    private String UPDATEPRODUCTBYSHOPCONTROLLER = "UpdateProduct";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,7 +61,16 @@ public class DispatcherServlet extends HttpServlet {
                 url = GETKEYTORESETPASSCONTROLLER;
             }else if(submit.equalsIgnoreCase("Update")){
                 url = UPDATECONTROLLER;
+            }else if(submit.equalsIgnoreCase("Click here to confirm email")){
+                url = CREATCODECONTROLLER;
+            }else if(submit.equalsIgnoreCase("Update Pass")){
+                url = CHANGEPASSCONTROLLER;
+            }else if(submit.equalsIgnoreCase("ResetPassByCode")){
+                url = CREATCODECONTROLLER;
+            }else if(submit.equalsIgnoreCase("Update Pass")){
+                url = CHANGEPASSCONTROLLER;
             }
+            
             
         }finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);

@@ -76,7 +76,7 @@
             <a href="shop.html">shop</a>
             <a href="about.html">about</a>
             <a href="team.html">team</a>
-            <a href="blog.html">blog</a>
+            <a href="saleListController">Sale</a>
             <a href="contact.html">contact</a>
         </nav>
 

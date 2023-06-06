@@ -73,16 +73,15 @@ public class CheckLoginbyUserName extends HttpServlet {
                 session.setAttribute("USERDTOBYUSERNAME", dto);
                 // System.out.println("Check by Username IMg ne" + dto.getImg());
 
-                /* if (dto.getRole().getRoleName().equalsIgnoreCase("admin")) {
-                    url = "HomePage.jsp";
+                if (dto.getRole()==2) {
+                    session.setAttribute("SHOP_ADMIN_ROLE", true);
+                    
                     // HomePage controller for system admin nhe
-                }else  if (dto.getRole().getRoleName().equalsIgnoreCase("sdmin")) {
-                    url = "HomePage.jsp";
-                    // HomePage controller for Shop nhe
-                
-                } else{
-                // Cusstomer ne 
-                }*/
+                }else  if (dto.getRole()== 3) {
+                    session.setAttribute("SYSTEM_ADMIN_ROLE", true);             
+                }else{
+                    session.setAttribute("USER_ROLE", true);
+                }
                 if (rememberMe != null) {
                     System.out.println(" Save ne ");
                     System.out.println(" username :" + username);

@@ -37,7 +37,7 @@ public class ProductDAO {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT * FROM Product";
+                String sql = "SELECT * FROM Product where status ='av'";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
 
@@ -72,6 +72,52 @@ public class ProductDAO {
         }
         return productDashList;
     }
+    
+    public ArrayList<Product> getSaleList() throws ClassNotFoundException, SQLException {
+        ArrayList<Product> productDashList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM Product  pSale !=1 and status ='av'";
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    int productID = rs.getInt("productID");
+                    String productName = rs.getString("productName");
+                    float priceIn = rs.getFloat("priceIn");
+                    String type = rs.getString("type");
+                    String category = rs.getString("category");
+                    int quantity = rs.getInt("quantity");
+                    String description = rs.getString("description");
+                    String status = rs.getString("status");
+                    String img = rs.getString("img");
+                    String sku = rs.getString("sku");
+                    int shopID = rs.getInt("shopID");
+                    float priceOut = rs.getFloat("priceOut");
+                    float pSale = rs.getFloat("pSale");
+                    Product result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale);
+                    productDashList.add(result);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return productDashList;
+    }
+    
 
     public void searchProduct(List<OrderDetail> orderDetailsList) throws ClassNotFoundException, SQLException {
         Connection con = null;

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Us</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+            />
+        <script src="./asset/js/sendMail.js"></script>
+
+        <script type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+        </script>
+        <script type="text/javascript">
+            (function () {
+                emailjs.init("80C9sLJ3eH1DEGjTk");
+            })();
+        </script>
+
+
+    </head>
+    <body>
+        <div class="container border mt-3 bg-light">
+            <div class="row">
+                <div class="col-md-6 p-5 bg-primary text-white">
+                    <h1>Hi there!</h1>
+                    <h4>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo,
+                    </h4>
+                </div>
+                <div class="col-md-6 border-left py-3">
+                    <h1>Contact form</h1>
+                    <form action="DispatcherServlet" >
+                        <div class="form-group">
+                            <h5 for="email">Email</h5>
+                            <input
+                                type="email" name="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="hiiii"
+                                value="suongmai07072003@gmail.com"
+                                />
+                            <input type ="text" value="This is your code: ${requestScope.CODE}" style="display: none;" class="form-control" id="message" rows="3"></input>
+          
+                        </div>
+                       1. <input type="submit" name="MAIN"  value="ResetPassByCode" />
+                    </form>
+                            <button type="submit" class="btn btn-primary" onclick="sendMailChangeProfile()">
+                        2.Send Code to my Gmail</button>
+                            <br> 3.
+                            <form action="DispatcherServlet">
+                                <input type="submit" name="MAIN" value="NEXT"  />
+                            </form>
+                            
+                        
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<textarea id="message"></textarea>
+
+

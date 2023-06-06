@@ -208,7 +208,7 @@ public class AccountDAO {
             con = DBHelper.makeConnection();
             //2. write sql 
             if (con != null) {
-                String sql = "insert into Account values(?,?,?, ?,?,?,?)";
+                String sql = "insert into Account values(?,?,?,?,?,?,?)";
                 //3. create stm
                 stm = con.prepareStatement(sql);
                 // stm.setInt(1,1);
