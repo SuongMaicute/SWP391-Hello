@@ -67,22 +67,23 @@ public class CheckLoginbyUserName extends HttpServlet {
 
             HttpSession session = request.getSession();
 
-            if (dto != null) {
+
+if (dto != null) {
                 System.out.println(" result != null ");
                 url = "HomePage.jsp";
                 session.setAttribute("USERDTOBYUSERNAME", dto);
                 // System.out.println("Check by Username IMg ne" + dto.getImg());
 
-                /* if (dto.getRole().getRoleName().equalsIgnoreCase("admin")) {
-                    url = "HomePage.jsp";
+                if (dto.getRole()==2) {
+                    session.setAttribute("SHOP_ADMIN_ROLE", true);
+                    
                     // HomePage controller for system admin nhe
-                }else  if (dto.getRole().getRoleName().equalsIgnoreCase("sdmin")) {
-                    url = "HomePage.jsp";
-                    // HomePage controller for Shop nhe
-                
-                } else{
-                // Cusstomer ne 
-                }*/
+                }else  if (dto.getRole()== 3) {
+                    session.setAttribute("SYSTEM_ADMIN_ROLE", true);    
+                    url = "shopOrdersController";
+                }else{
+                    session.setAttribute("USER_ROLE", true);
+                }
                 if (rememberMe != null) {
                     System.out.println(" Save ne ");
                     System.out.println(" username :" + username);
@@ -96,7 +97,7 @@ public class CheckLoginbyUserName extends HttpServlet {
                 url = "Login.jsp";
                 request.setAttribute("validAcc", "false");
             }
-
+  session.setAttribute("username", username);
         } catch (ClassNotFoundException ex) {
             log("LoginServlet " + ex.getMessage());
         } catch (SQLException ex) {

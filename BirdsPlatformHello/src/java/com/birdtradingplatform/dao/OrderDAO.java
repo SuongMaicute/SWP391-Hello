@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.birdtradingplatform.model.OrderHistory;
+import com.birdtradingplatform.model.Shop;
 import com.birdtradingplatform.utils.DBHelper;
 
 /**
@@ -125,6 +126,46 @@ public class OrderDAO {
             }
         }
         return list;
+    }
+  public ArrayList<Order> getOrderByShopID(Shop shop) throws ClassNotFoundException, SQLException {
+        ArrayList<Order> orders = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Order result = null;
+        con = DBHelper.makeConnection();
+
+        if (con != null) {
+            try {
+                String sql = "SELECT * FROM [BirdPlatform].[dbo].[Order] WHERE shopID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, shop.getShopID());
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int orderID = rs.getInt("orderID");
+                    String orderDate = rs.getString("orderDate");
+                    double total = rs.getDouble("total");
+                    int paymentID = rs.getInt("paymentID");
+                    int customerID = rs.getInt("customerID");
+                    int addressShipID = rs.getInt("addressShipID");
+                    String shipDate = rs.getString("shipDate");
+                    String status = rs.getString("status");
+                    result = new Order(orderID, orderDate, total, paymentID, customerID, addressShipID, shipDate, status);
+                    orders.add(result);
+                }
+            } finally {
+                if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            } 
+            }
+        }
+        return orders;
     }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         OrderDAO dao = new OrderDAO();
