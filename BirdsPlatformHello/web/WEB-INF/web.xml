@@ -39,7 +39,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-           AdminDashboardController
+           HomePage.jsp
         </welcome-file>
     </welcome-file-list>
 </web-app>

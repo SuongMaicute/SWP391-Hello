@@ -112,7 +112,7 @@
                                 </div>
                                 <c:set var="NameErr" value="${requestScope.NameERR}" />
                                 <c:if test="${not empty NameErr}">
-                                    <h3 style="color: red;">Your name is blank </h3>
+                                    <h4 style="color: red;">Your name is blank </h4>
                                 </c:if>
 
 
@@ -127,12 +127,12 @@
                                 </div>
                                 <c:set var="EmailERR" value="${requestScope.EmailERR}" />
                                 <c:if test="${not empty EmailERR}">
-                                    <h3 style="color: red;">Your Gmail is blank </h3>
+                                    <h4 style="color: red;">Your Gmail is blank </h4>
                                 </c:if>
 
                                 <c:set var="DuplicatedERR" value="${requestScope.DuplicatedERR}" />
                                 <c:if test="${not empty DuplicatedERR}">
-                                    <h3style="color: red;">Your Gmail is already existed </h3style=>
+                                    <h4 style="color: red;">Your Gmail is already register in PetHello Platform</h4style=>
                                         </c:if>
 
                                         <div class="input-wrap">
@@ -148,7 +148,7 @@
                                 </div>
                                 <c:set var="PassERR" value="${requestScope.PassERR}" />
                                 <c:if test="${not empty PassERR}">
-                                    <h3 style="color: red;">Your password is blank </h3>
+                                    <h4 style="color: red;">Your password is blank </h4>
                                 </c:if>   
 
 
@@ -167,12 +167,12 @@
 
                                 <c:set var="ConfirmERR" value="${requestScope.ConfirmERR}" />
                                 <c:if test="${not empty ConfirmERR}">
-                                    <h3 style="color: red;">Your confirm is blank </h3>
+                                    <h4 style="color: red;">Your confirm is blank </h4>
                                 </c:if>
 
                                 <c:set var="MatchERR" value="${requestScope.MatchERR}" />
                                 <c:if test="${not empty MatchERR}">
-                                    <h3 style="color: red;">Your password is not match</h3>
+                                    <h4 style="color: red;">Your password is not match</h4>
                                 </c:if>
                                 <input name="MAIN" type="submit" value="Register" class="sign-btn" />
 

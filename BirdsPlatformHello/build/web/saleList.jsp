@@ -57,11 +57,11 @@
         <!-- navbar start  -->
 
         <nav class="navbar">
-            <a href="./Homepage.html">home</a>
+            <a href="./HomePage.jsp">home</a>
             <a href="./shop.html">shop</a>
             <a href="./about.html">about</a>
             <a href="./team.html">team</a>
-            <a href="./blog.html">blog</a>
+            <a href="./saleList.jsp">Sale</a>
             <a href="./contact.html">contact</a>
         </nav>
 

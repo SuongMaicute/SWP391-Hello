@@ -5,8 +5,13 @@
  */
 package com.birdtradingplatform.controller;
 
+import com.birdtradingplatform.dao.ProductDAO;
+import com.birdtradingplatform.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +36,66 @@ public class UpdateProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Boolean err= false;
+        String url = "updateProduct.jsp";
         try{
+            String id = request.getParameter("productID");
             
+            String img = request.getParameter("img");
+            String productName = request.getParameter("productname");
+            
+           
+            String type = request.getParameter("type");
+            String category = request.getParameter("category");
+            int quantity;
+            Float price_in = 0.0f;
+            try{
+            quantity = Integer.parseInt(request.getParameter("priceIn"));
+            price_in = Float.parseFloat(request.getParameter("priceIn"));
+            }catch(NumberFormatException e){
+                quantity =-1;
+            }
+            String description = request.getParameter("description");
+            String status = request.getParameter("status");
+            
+            // select product by id
+            
+            ProductDAO dao = new ProductDAO();
+            Product dto = dao.getProduct(id);
+            
+            if(dto != null){
+                if(img!= null && dto.getImg() != img){
+                    dto.setImg(img);
+                }
+                if(productName!= null && dto.getProductName() != productName){
+                    dto.setProductName(productName);
+                }
+                if(price_in!= 0.0f && dto.getPriceIn() != price_in){
+                    dto.setPriceIn(price_in);
+                }
+                if(type!= null && dto.getType()!= type){
+                    dto.setType(type);
+                }
+                if(category!= null && dto.getCategory()!= category){
+                    dto.setCategory(category);
+                }
+                if(quantity!= -1 && dto.getQuantity()!= quantity){
+                    dto.setQuantity(quantity);
+                }
+                if(description!= null && dto.getDescription()!= description){
+                    dto.setDescription(description);
+                }
+                if(status!= null && dto.getStatus()!= status){
+                    dto.setStatus(status);
+                }
+                
+            }else{
+                log("Updateproduct controller can not get id");
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateProduct.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             
         }

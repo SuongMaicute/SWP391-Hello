@@ -14,6 +14,7 @@
     </head>
     <body>
         <form action="DispatcherServlet">
+            <input type="hidden" name="productID" value="" />
             <br> img
             <input type="text" name="img" value="" />
             <button id="upload" onclick="">Check Image</button>
@@ -31,7 +32,7 @@
             <br> description
             <input type="text" name="description" value="" />
             <br> status
-            <input type="check" name="status" value="" />
+            <input type="text" name="status" value="" />
             
             <br>
             <input type="submit" name="MAIN" value="Goooooooooooooooo" />     
