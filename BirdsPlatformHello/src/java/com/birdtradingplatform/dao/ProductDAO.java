@@ -37,7 +37,7 @@ public class ProductDAO {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT * FROM Product where status ='av'";
+                String sql = "SELECT * FROM Product";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
 
@@ -72,52 +72,6 @@ public class ProductDAO {
         }
         return productDashList;
     }
-    
-    public ArrayList<Product> getSaleList() throws ClassNotFoundException, SQLException {
-        ArrayList<Product> productDashList = new ArrayList<>();
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-
-        try {
-            con = DBHelper.makeConnection();
-            if (con != null) {
-                String sql = "SELECT * FROM Product  pSale !=1 and status ='av'";
-                stm = con.prepareStatement(sql);
-                rs = stm.executeQuery();
-
-                while (rs.next()) {
-                    int productID = rs.getInt("productID");
-                    String productName = rs.getString("productName");
-                    float priceIn = rs.getFloat("priceIn");
-                    String type = rs.getString("type");
-                    String category = rs.getString("category");
-                    int quantity = rs.getInt("quantity");
-                    String description = rs.getString("description");
-                    String status = rs.getString("status");
-                    String img = rs.getString("img");
-                    String sku = rs.getString("sku");
-                    int shopID = rs.getInt("shopID");
-                    float priceOut = rs.getFloat("priceOut");
-                    float pSale = rs.getFloat("pSale");
-                    Product result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale);
-                    productDashList.add(result);
-                }
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return productDashList;
-    }
-    
 
     public void searchProduct(List<OrderDetail> orderDetailsList) throws ClassNotFoundException, SQLException {
         Connection con = null;
@@ -330,49 +284,141 @@ public class ProductDAO {
         }
         return 0;
     }
-
-    public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) throws SQLException {
-          List<ProductWithRate> productList = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement pstm = null;
+ public ArrayList<Product> getProductByShopID(Shop shop) throws ClassNotFoundException, SQLException{
+        ArrayList<Product> products = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
         ResultSet rs = null;
-
+        Product result = null;
+        
+        con = DBHelper.makeConnection();
+        if (con != null) {
+            try {
+                String  sql = "SELECT [productID],[productName],[priceIn],[type],[category],[quantity],[description],[status],[img],[sku],[priceOut],[pSale]"
+                             + "FROM [BirdPlatform].[dbo].[Product]"
+                            + " WHERE shopID = ? ";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, shop.getShopID());
+                rs = stm.executeQuery();
+                while (rs.next()) {                    
+                  int productID = rs.getInt("productID");
+                    String productName = rs.getString("productName");
+                    float priceIn = rs.getFloat("priceIn");
+                    String type = rs.getString("type");
+                    String category = rs.getString("category");
+                    int quantity = rs.getInt("quantity");
+                    String description = rs.getString("description");
+                    String status = rs.getString("status");
+                    String img = rs.getString("img");
+                    String sku = rs.getString("sku");
+                    float priceOut = rs.getFloat("priceOut");
+                    float pSale = rs.getFloat("pSale");
+                    result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, shop, priceOut, pSale, status);
+                    products.add(result);
+                }
+            } finally {
+               if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            } 
+            }
+        }
+        return products;        
+    }
+    public ArrayList<Product> getOrderDetailByOrderID(List<OrderDetail> details) throws ClassNotFoundException, SQLException{
+        ArrayList<Product> products = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Product result = null;
         try {
-            conn = DBHelper.makeConnection();
-            if (conn != null) {
-                String sql = "select * "
-                        + " from [Product] "
-                        + " where (name like ? or Describe like ? or category = ?)"
-                        + " order by "+colSort +" "+ sortType+" offset "+(page-1)*limit+" rows "
-                        + " fetch next ? rows only; ";
-                pstm = conn.prepareStatement(sql);
-                pstm.setString(1, "%" + search + "%");
-                pstm.setString(2, "%" + search + "%");
-                pstm.setString(3, search);
-                pstm.setInt(4, limit);
-                
-                rs = pstm.executeQuery();
-                while (rs.next()) {
-                    productList.add(new Product(rs.getInt("id"), rs.getString("name"),
-                            rs.getString("category"), rs.getInt("Quantity"),
-                            rs.getString("ImgPath"), rs.getDouble("Price"),
-                            rs.getString("Adddate"), rs.getString("Describe")));
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM [BirdPlatform].[dbo].[Product] WHERE productID = ?";
+                for (OrderDetail detail : details) {
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, detail.getProductID());
+                    rs = stm.executeQuery();
+                    
+                    while (rs.next()) {              
+                    int productID = rs.getInt("productID");    
+                    String productName = rs.getString("productName");
+                    float priceIn = rs.getFloat("priceIn");
+                    String type = rs.getString("type");
+                    String category = rs.getString("category");
+                    int quantity = rs.getInt("quantity");
+                    String description = rs.getString("description");
+                    String status = rs.getString("status");
+                    String img = rs.getString("img");
+                    String sku = rs.getString("sku");
+                    float priceOut = rs.getFloat("priceOut");
+                    float pSale = rs.getFloat("pSale");
+                    result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale, status);
+                    products.add(result);
+                    }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             if (rs != null) {
                 rs.close();
             }
-            if (pstm != null) {
-                pstm.close();
+            if (stm != null) {
+                stm.close();
             }
-            if (conn != null) {
-                conn.close();
-            }
+            if (con != null) {
+                con.close();
+            } 
         }
-        return productList;
+        return products;
+        
     }
+//    public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) throws SQLException {
+//          List<ProductWithRate> productList = new ArrayList<>();
+//        Connection conn = null;
+//        PreparedStatement pstm = null;
+//        ResultSet rs = null;
+//
+//        try {
+//            conn = DBHelper.makeConnection();
+//            if (conn != null) {
+//                String sql = "select * "
+//                        + " from [Product] "
+//                        + " where (name like ? or Describe like ? or category = ?)"
+//                        + " order by "+colSort +" "+ sortType+" offset "+(page-1)*limit+" rows "
+//                        + " fetch next ? rows only; ";
+//                pstm = conn.prepareStatement(sql);
+//                pstm.setString(1, "%" + search + "%");
+//                pstm.setString(2, "%" + search + "%");
+//                pstm.setString(3, search);
+//                pstm.setInt(4, limit);
+//                
+//                rs = pstm.executeQuery();
+//                while (rs.next()) {
+//                    productList.add(new Product(rs.getInt("id"), rs.getString("name"),
+//                            rs.getString("category"), rs.getInt("Quantity"),
+//                            rs.getString("ImgPath"), rs.getDouble("Price"),
+//                            rs.getString("Adddate"), rs.getString("Describe")));
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (pstm != null) {
+//                pstm.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
+//        }
+//        return productList;
+//    }
 
 }

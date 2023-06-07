@@ -4,6 +4,7 @@
  */
 package com.birdtradingplatform.dao;
 
+import com.birdtradingplatform.model.Order;
 import com.birdtradingplatform.model.OrderDetail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.birdtradingplatform.utils.DBHelper;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -19,11 +22,17 @@ import com.birdtradingplatform.utils.DBHelper;
  */
 public class OrderDetailDAO {
 
-    public List<OrderDetail> orderItemList;
+   public List<OrderDetail> orderItemList;
+    public Map<Integer, String> mapImg;
 
     public List<OrderDetail> getOrderItemList() {
         return orderItemList;
     }
+
+    public Map<Integer, String> getMapImg() {
+        return mapImg;
+    }
+
 
     public float getIncome() throws ClassNotFoundException, SQLException {
         Connection con = null;
@@ -93,6 +102,58 @@ public class OrderDetailDAO {
                 con.close();
             }
         }
+    }
+  public List<OrderDetail> getImgByOrderID(List<Order> orders) throws ClassNotFoundException, SQLException {
+        ArrayList<OrderDetail> orderDetails = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement stm = null;
+        OrderDetail result = null;
+        if (this.mapImg == null) {
+            mapImg = new HashMap<>();
+        }
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "SELECT TOP (1000) [orderDetailID] "
+                        + "      ,[OrderDetail].[quantity] "
+                        + "      ,[OrderDetail].[price] "
+                        + "      ,[OrderDetail].[productID] "
+                        + "      ,[orderID], "
+                        + "	  img "
+                        + "  FROM [BirdPlatform].[dbo].[OrderDetail], Product  "
+                        + "  where [OrderDetail].productID = Product.productID";
+                // for (Order order : orders) {
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    int orderDetailID = rs.getInt("orderDetailID");
+                    int quantity = rs.getInt("quantity");
+                    float price = rs.getFloat("price");
+                    int productID = rs.getInt("productID");
+                    int orderID = rs.getInt("orderID");
+                    String img = rs.getString("img");
+
+                    result = new OrderDetail(orderDetailID, quantity, price, productID, orderID);
+                    orderDetails.add(result);
+
+                    mapImg.put(orderID, img);
+                }
+            }
+            //}
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return orderDetails;
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
