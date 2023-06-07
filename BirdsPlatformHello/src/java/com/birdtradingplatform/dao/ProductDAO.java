@@ -286,7 +286,7 @@ public class ProductDAO {
     }
 
     public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) throws SQLException {
-          List<ProductWithRate> productList = new ArrayList<>();
+        List<ProductWithRate> productList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -294,23 +294,36 @@ public class ProductDAO {
         try {
             conn = DBHelper.makeConnection();
             if (conn != null) {
-                String sql = "select * "
-                        + " from [Product] "
-                        + " where (name like ? or Describe like ? or category = ?)"
-                        + " order by "+colSort +" "+ sortType+" offset "+(page-1)*limit+" rows "
+                String sql = "select *, pRate.star"
+                        + " from [Product] left join ProductRate() as pRate "
+                        + " on Product.productID = pRate.productID"
+                        + " where (productName like ? or description like ? or category = ?)"
+                        + " order by " + colSort + " " + category 
+                        + " offset " + (curPage - 1) * productPerPage + " rows "
                         + " fetch next ? rows only; ";
+
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, "%" + search + "%");
                 pstm.setString(2, "%" + search + "%");
                 pstm.setString(3, search);
-                pstm.setInt(4, limit);
-                
+                pstm.setInt(4, productPerPage);
+
                 rs = pstm.executeQuery();
                 while (rs.next()) {
-                    productList.add(new Product(rs.getInt("id"), rs.getString("name"),
-                            rs.getString("category"), rs.getInt("Quantity"),
-                            rs.getString("ImgPath"), rs.getDouble("Price"),
-                            rs.getString("Adddate"), rs.getString("Describe")));
+                    productList.add(new ProductWithRate(rs.getInt("star"), rs.getInt("productID"),
+                            rs.getString("productName"),
+                            rs.getDouble("priceIn"),
+                            rs.getString("type"),
+                            rs.getString("category"),
+                            rs.getInt("quantity"),
+                            rs.getString("description"),
+                            rs.getString("status"),
+                            rs.getString("img"),
+                            rs.getString("sku"),
+                            null,
+                            rs.getDouble("priceOut"),
+                            rs.getDouble("pSale"), "" ));
+                  
                 }
             }
         } catch (Exception e) {
