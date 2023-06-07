@@ -3,12 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/dao/ProductDAO.java</file>
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/web/saleList.jsp</file>
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/web/updateProduct.jsp</file>
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/controller/UpdateProduct.java</file>
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/web/js/Login.js</file>
             <file>file:/D:/FPT/summer23%20-%20Ky5/SWP391/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/controller/SignUP.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/D:/STUDY/se5-summer2023/SWP/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/controller/ProductController.java</file>
+            <file>file:/D:/STUDY/se5-summer2023/SWP/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/model/Shop.java</file>
+            <file>file:/D:/STUDY/se5-summer2023/SWP/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/model/ProductWithRate.java</file>
+            <file>file:/D:/STUDY/se5-summer2023/SWP/SWP391-Hello/BirdsPlatformHello/web/shop.jsp</file>
+            <file>file:/D:/STUDY/se5-summer2023/SWP/SWP391-Hello/BirdsPlatformHello/src/java/com/birdtradingplatform/dao/ProductDAO.java</file>
+=======
+            <file>file:/D:/Documents/CodeJava/SWP391-Hello-main/BirdsPlatformHello/web/shopProfile.jsp</file>
+            <file>file:/D:/Documents/CodeJava/SWP391-Hello-main/BirdsPlatformHello/src/java/com/birdtradingplatform/controller/LoginGoogleHandler.java</file>
+>>>>>>> 1a4059b6dbdb5880f90634f770dad0170f1b05ae
+>>>>>>> 1c3b3fb0d76bbf1aa901b41d03e526b099bdc7ab
         </group>
     </open-files>
 </project-private>

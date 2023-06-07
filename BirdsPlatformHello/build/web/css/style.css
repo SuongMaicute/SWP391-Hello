@@ -26,11 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   gap: 1.6rem;
 }
 .insights > div{
-<<<<<<< HEAD
-  background: #ac8576;
-=======
   background: #fff;
->>>>>>> 15ac2d2293b7768e3994edae77dc6d9b9c163d81
   padding: var(--card-padding-1);
   border-radius: var(--card-border-radius);
   margin-top: 1rem;
@@ -100,11 +96,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .charts-card {
-<<<<<<< HEAD
-  background-color: #ac8576;
-=======
   background-color: #fff;
->>>>>>> 15ac2d2293b7768e3994edae77dc6d9b9c163d81
   margin-bottom: 20px;
   padding: 25px;
   box-sizing: border-box;

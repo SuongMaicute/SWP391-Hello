@@ -142,10 +142,10 @@ public class ProductController extends HttpServlet {
             } catch (Exception e) {
                 curPage = 1;
             }
-            List<ProductWithRate> shopProductList = dao.getShopProductListByPage(search, 
-                    productPerPage, curPage, colSort, category);
+//            List<ProductWithRate> shopProductList = dao.getShopProductListByPage(search, 
+//                    productPerPage, curPage, colSort, category);
             //List of suggested product
-            request.setAttribute("suggestedlist", shopProductList);
+//            request.setAttribute("suggestedlist", shopProductList);
             //total page
             request.setAttribute("totalpage", numPage);
             //current page

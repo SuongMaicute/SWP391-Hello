@@ -67,7 +67,8 @@ public class CheckLoginbyUserName extends HttpServlet {
 
             HttpSession session = request.getSession();
 
-            if (dto != null) {
+
+if (dto != null) {
                 System.out.println(" result != null ");
                 url = "HomePage.jsp";
                 session.setAttribute("USERDTOBYUSERNAME", dto);
@@ -78,7 +79,8 @@ public class CheckLoginbyUserName extends HttpServlet {
                     
                     // HomePage controller for system admin nhe
                 }else  if (dto.getRole()== 3) {
-                    session.setAttribute("SYSTEM_ADMIN_ROLE", true);             
+                    session.setAttribute("SYSTEM_ADMIN_ROLE", true);    
+                    url = "shopOrdersController";
                 }else{
                     session.setAttribute("USER_ROLE", true);
                 }
@@ -95,7 +97,7 @@ public class CheckLoginbyUserName extends HttpServlet {
                 url = "Login.jsp";
                 request.setAttribute("validAcc", "false");
             }
-
+  session.setAttribute("username", username);
         } catch (ClassNotFoundException ex) {
             log("LoginServlet " + ex.getMessage());
         } catch (SQLException ex) {
