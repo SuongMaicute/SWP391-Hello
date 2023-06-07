@@ -6,6 +6,7 @@
 package com.birdtradingplatform.dao;
 
 import com.birdtradingplatform.model.DiscountDTOMore;
+import com.birdtradingplatform.utils.DBHelper;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -13,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.naming.NamingException;
-import minhquan.util.DBHelper;
 
 /**
  *

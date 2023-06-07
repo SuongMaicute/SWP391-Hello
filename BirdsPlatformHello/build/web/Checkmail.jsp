@@ -72,7 +72,7 @@
                 </div>
                 <div class="only">
                     <input id="only" class="submit-btn" type="submit" name="MAIN" value="ResetPassByCode" />
-                    <a href="sendCode.html" class="submit-btn">Next step</a>
+                    <a href="sendCode.jsp" class="submit-btn">Next step</a>
                     
                     
                     

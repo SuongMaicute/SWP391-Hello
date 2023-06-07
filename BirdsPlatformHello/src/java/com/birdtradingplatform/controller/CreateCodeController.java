@@ -54,7 +54,7 @@ public class CreateCodeController extends HttpServlet {
                 dao.DeleteCodeByEmail(gmail);
             }
             code = dao.Create_New_Code(gmail);
-            request.setAttribute("CODE", code);
+            session.setAttribute("CODE", code);
                 session.setAttribute("EMAILHAVECODE", gmail);
             System.out.println("we in crate code ser v let and email is" + gmail);
             System.out.println("emil:" + gmail+"code:" + code);

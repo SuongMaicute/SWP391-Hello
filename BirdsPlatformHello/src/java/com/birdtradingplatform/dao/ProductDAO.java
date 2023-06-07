@@ -100,7 +100,10 @@ public class ProductDAO {
                     int shopID = rs.getInt("shopID");
                     float priceOut = rs.getFloat("priceOut");
                     float pSale = rs.getFloat("pSale");
-                    Product result = new Product(productID, productName, priceIn, type, category, quantity, description, status, img, sku, null, priceOut, pSale);
+                    
+                    Product result = new Product(productID, productName, priceIn, type,
+                            category, quantity, description, status,
+                            img, sku, null, priceOut, pSale,"");
                     productDashList.add(result);
                 }
             }
@@ -333,7 +336,7 @@ public class ProductDAO {
 
     public List<ProductWithRate> getShopProductListByPage(String search, int productPerPage, int curPage, String colSort, String category) throws SQLException {
           List<ProductWithRate> productList = new ArrayList<>();
-        Connection conn = null;
+    /*    Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
 
@@ -371,7 +374,7 @@ public class ProductDAO {
             if (conn != null) {
                 conn.close();
             }
-        }
+        }*/
         return productList;
     }
 
