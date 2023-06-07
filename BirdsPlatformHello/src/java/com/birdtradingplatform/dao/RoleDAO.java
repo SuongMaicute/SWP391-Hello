@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.birdtradingplatform.dao.AccountDAO;
 
-import minhquan.util.DBHelper;
+import com.birdtradingplatform.utils.DBHelper;
 
 /**
  *
@@ -38,10 +38,8 @@ public class RoleDAO {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT * FROM ROLE WHERE role = ?";
+                String sql = "SELECT * FROM ROLE";
                 stm = con.prepareStatement(sql);
-                for (Account user : userList) {
-                    stm.setInt(1, user.getRole());
                     rs = stm.executeQuery();
                 
                 while (rs.next()) {
@@ -53,7 +51,7 @@ public class RoleDAO {
                     }
                     this.roles.add(result);
                 }
-            }
+            
             }
         } finally {
             if (rs != null) {

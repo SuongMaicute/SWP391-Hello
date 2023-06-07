@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.naming.NamingException;
-import minhquan.util.DBHelper;
+import com.birdtradingplatform.utils.DBHelper;
 
 /**
  *

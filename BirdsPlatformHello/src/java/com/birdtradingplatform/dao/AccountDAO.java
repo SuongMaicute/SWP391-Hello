@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
-import minhquan.util.DBHelper;
+import com.birdtradingplatform.utils.DBHelper;
 
 /**
  *
@@ -407,7 +407,32 @@ public class AccountDAO {
     /*
     
      */
-
+    public int updateAccountByAdmin(Account acc) throws ClassNotFoundException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBHelper.makeConnection();
+            String sql = "UPDATE Account SET password = ?, role = ? WHERE email = ?";
+            
+            stm = con.prepareStatement(sql);
+            stm.setString(1, acc.getPassword());
+            stm.setInt(2, acc.getRole());
+            stm.setString(3, acc.getEmail());
+            
+            result = stm.executeUpdate();
+            
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+        }
+ 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         AccountDAO dao = new AccountDAO();
         List<Account> accounts= 

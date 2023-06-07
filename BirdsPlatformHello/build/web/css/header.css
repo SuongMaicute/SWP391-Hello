@@ -87,7 +87,7 @@ body {
 }
 .account-menu span{
   font-size: 30px;
-  color: #fff;
+  color: rgb(94 71 62);
   font-weight: 400;
 }
 .account-menu ul li{
@@ -109,12 +109,17 @@ body {
 .account-menu .ul li a{
   display: inline-block;
   text-decoration: none;
-  color: #555;
+  color: rgb(94 71 62);
   font-weight: 500;
   transition: 0.5s;
 }
 .account-menu .ul li:hover a{
   color: #cc2162;
+}
+.navbar-list li a{
+    color: rgb(94 71 62);
+    font-size: 20px;
+    text-align: center;
 }
 .date{
   background-color: var(--color-primary);

@@ -3,10 +3,15 @@
 #sidebar {
   grid-area: sidebar;
   height: 100%;
+<<<<<<< HEAD
   background-color: red;
+=======
+  background-color: #f0e8e4;
+>>>>>>> 15ac2d2293b7768e3994edae77dc6d9b9c163d81
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
 }
 
 .sidebar-title {
@@ -45,7 +50,7 @@
 
 .sidebar-list-item > a {
   text-decoration: none;
-  color: #9e9ea4;
+  color: rgb(94 71 62);
 }
 
 .sidebar-responsive {
